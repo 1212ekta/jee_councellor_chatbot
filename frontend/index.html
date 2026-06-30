@@ -8,214 +8,247 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0f1117; --surface: #1a1d27; --surface2: #23263a;
     --border: #2e3348; --text: #e8eaf0; --muted: #8b92a5;
     --blue: #4f8ef7; --green: #34d399; --amber: #fbbf24;
     --red: #f87171; --purple: #a78bfa; --teal: #2dd4bf;
-    --radius: 12px; --gap: 16px;
+    --radius: 12px; --gap: 20px;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-family); min-height: 100vh; line-height: 1.5; display: flex; flex-direction: column; }
   button { cursor: pointer; font-family: inherit; }
-  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
-    outline: 2px solid var(--blue); outline-offset: 2px;
-  }
-
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  
   /* Layout */
-  .app { max-width: 1200px; margin: 0 auto; padding: 24px 16px; }
-  .header { text-align: center; margin-bottom: 40px; }
-  .header h1 { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .header p { color: var(--muted); margin-top: 8px; font-size: 1.05rem; }
+  .app { flex: 1; max-width: 1200px; margin: 0 auto; padding: 32px 20px; width: 100%; }
+  
+  /* Hero section (Header) */
+  .header { text-align: center; margin-bottom: 48px; }
+  .header h1 { font-size: 2.8rem; font-weight: 800; background: linear-gradient(135deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.03em; }
+  .header p { color: var(--muted); margin-top: 12px; font-size: 1.15rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
   /* Card */
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: var(--gap); }
-  .card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: var(--gap); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+  .card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 20px; color: var(--text); display: flex; align-items: center; gap: 8px; }
   
   /* Form */
-  .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-group label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
-  input, select { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px; color: var(--text); font-size: 0.95rem; width: 100%; outline: none; transition: border-color 0.2s; }
-  input:focus, select:focus { border-color: var(--blue); }
-  input[type=range] { padding: 8px 0; accent-color: var(--blue); cursor: pointer; }
-  .range-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted); }
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: flex; justify-content: space-between; }
+  input, select { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px; color: var(--text); font-size: 1rem; width: 100%; outline: none; transition: all 0.2s; font-family: inherit; }
+  input:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.15); }
+  
+  /* Range slider styling */
+  input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; padding: 12px 0; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: var(--blue); cursor: pointer; margin-top: -8px; box-shadow: 0 0 10px rgba(79,142,247,0.5); }
+  input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: var(--surface2); border-radius: 6px; border: 1px solid var(--border); }
+  input[type=range]:focus::-webkit-slider-thumb { outline: 3px solid rgba(79, 142, 247, 0.3); }
+  .range-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted); font-weight: 500; }
 
   /* Buttons */
-  .btn { padding: 12px 24px; border-radius: 8px; border: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
-  .btn-primary { background: linear-gradient(135deg, #4f8ef7, #3b76e0); color: #fff; box-shadow: 0 4px 12px rgba(79, 142, 247, 0.3); }
-  .btn-primary:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-1px); }
-  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+  .btn { padding: 14px 28px; border-radius: 10px; border: none; font-weight: 600; font-size: 1rem; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; cursor: pointer; }
+  .btn-primary { background: linear-gradient(135deg, #4f8ef7, #3b76e0); color: #fff; box-shadow: 0 4px 16px rgba(79, 142, 247, 0.35); }
+  .btn-primary:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79, 142, 247, 0.45); }
+  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; transform: none; }
   .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
   .btn-ghost:hover { border-color: var(--blue); color: var(--blue); background: rgba(79, 142, 247, 0.05); }
-  .btn-row { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
-  .btn-sm { padding: 8px 16px; font-size: 0.85rem; border-radius: 6px; }
+  .btn-row { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
+  .btn-sm { padding: 10px 20px; font-size: 0.9rem; border-radius: 8px; }
 
-  /* Tabs — BUG-29-FIX: hide scrollbar on all browsers */
-  .tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 8px; overflow-x: auto; scrollbar-width: none; }
+  /* Tabs */
+  .tabs { display: flex; gap: 12px; margin-bottom: 32px; border-bottom: 1px solid var(--border); padding-bottom: 12px; overflow-x: auto; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
-  .tab { padding: 10px 20px; border: none; background: none; color: var(--muted); font-size: 0.95rem; font-weight: 600; cursor: pointer; border-radius: 8px; transition: all 0.2s; white-space: nowrap; }
+  .tab { padding: 12px 24px; border: none; background: none; color: var(--muted); font-size: 1rem; font-weight: 600; cursor: pointer; border-radius: 10px; transition: all 0.2s; white-space: nowrap; position: relative; }
   .tab:hover { color: var(--text); background: var(--surface); }
-  .tab.active { color: #fff; background: var(--surface2); border-bottom: 2px solid var(--blue); border-radius: 8px 8px 0 0; }
+  .tab.active { color: #fff; background: var(--surface2); }
+  .tab.active::after { content: ''; position: absolute; bottom: -13px; left: 0; right: 0; height: 3px; background: var(--blue); border-radius: 3px 3px 0 0; }
 
-  /* Hero Dashboard */
-  .hero-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  .hero-card { background: linear-gradient(145deg, var(--surface), var(--surface2)); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
-  .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--purple)); }
-  .hero-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
-  .hero-value { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
-  .hero-sub { font-size: 0.9rem; color: var(--blue); font-weight: 600; }
-  /* BUG-25-FIX: hero-stats-grid collapses to 1-col on narrow screens */
-  .hero-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .hero-stat { background: rgba(0,0,0,0.2); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
-  .hero-stat-val { font-size: 1.5rem; font-weight: 800; color: var(--text); }
-  .hero-stat-lbl { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+  /* Premium Hero Dashboard */
+  .hero-dashboard { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; margin-bottom: 32px; }
+  .hero-card { background: linear-gradient(145deg, var(--surface), var(--surface2)); border: 1px solid var(--border); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+  .hero-card.best-rec { background: linear-gradient(145deg, rgba(79, 142, 247, 0.08), var(--surface)); border: 1px solid rgba(79, 142, 247, 0.3); }
+  .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--blue), var(--purple)); }
+  .hero-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .hero-value { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 8px; line-height: 1.2; letter-spacing: -0.02em; }
+  .hero-sub { font-size: 1.1rem; color: var(--blue); font-weight: 600; margin-bottom: 16px; }
+  .hero-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+  .hero-stat { background: rgba(0,0,0,0.25); padding: 20px 16px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); text-align: center; transition: transform 0.2s; }
+  .hero-stat:hover { transform: translateY(-3px); background: rgba(0,0,0,0.3); }
+  .hero-stat-val { font-size: 1.8rem; font-weight: 800; color: var(--text); }
+  .hero-stat-lbl { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 8px; font-weight: 600; }
   .hero-stat-val.highlight { background: linear-gradient(135deg, var(--green), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
+  /* Persona Analytics */
+  .persona-factor { margin-top: 16px; }
+  .persona-factor-label { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+  .persona-factor-bar { height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; }
+  .persona-factor-fill { height: 100%; border-radius: 3px; background: var(--purple); }
+
+  /* Global Analytics Bar */
+  .analytics-bar { display: flex; gap: 20px; background: var(--surface2); padding: 16px 24px; border-radius: 12px; margin-bottom: 32px; border: 1px solid var(--border); overflow-x: auto; white-space: nowrap; }
+  .analytic-item { display: flex; align-items: center; gap: 12px; border-right: 1px solid var(--border); padding-right: 20px; }
+  .analytic-item:last-child { border-right: none; padding-right: 0; }
+  .analytic-icon { font-size: 1.5rem; }
+  .analytic-data { display: flex; flex-direction: column; }
+  .analytic-val { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+  .analytic-lbl { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; }
+
   /* Pipeline Animation */
-  .pipeline-container { padding: 40px; text-align: center; background: var(--surface); border-radius: var(--radius); border: 1px dashed var(--border); margin: 40px 0; }
-  .pipeline-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 24px; color: var(--blue); }
-  .pipeline-step { display: flex; align-items: center; justify-content: flex-start; gap: 12px; margin-bottom: 16px; font-size: 1rem; color: var(--muted); opacity: 0; transform: translateY(10px); transition: all 0.4s ease; width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; }
-  .pipeline-step.active { opacity: 1; transform: translateY(0); color: var(--text); }
-  .pipeline-step.done { opacity: 1; transform: translateY(0); color: var(--green); }
-  .step-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid currentColor; font-size: 0.8rem; font-weight: bold; flex-shrink: 0; }
+  .pipeline-container { padding: 48px; text-align: center; background: var(--surface); border-radius: 20px; border: 1px dashed var(--border); margin: 40px 0; display: flex; flex-direction: column; align-items: center; }
+  .pipeline-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 32px; color: var(--text); }
+  .pipeline-steps { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 20px; }
+  .pipeline-step { display: flex; align-items: center; justify-content: flex-start; gap: 16px; padding: 16px; border-radius: 12px; background: var(--surface2); border: 1px solid var(--border); opacity: 0.4; transform: translateY(10px); transition: all 0.4s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .pipeline-step.active { opacity: 1; transform: translateY(0); border-color: var(--blue); box-shadow: 0 4px 20px rgba(79, 142, 247, 0.15); }
+  .pipeline-step.done { opacity: 1; transform: translateY(0); border-color: var(--green); }
+  .step-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.2); font-size: 0.9rem; font-weight: bold; flex-shrink: 0; transition: all 0.3s; }
+  .pipeline-step.done .step-icon { background: var(--green); color: #000; }
+  .pipeline-step.active .step-icon { border: 2px solid var(--blue); border-top-color: transparent; animation: spin 1s linear infinite; background: transparent; }
 
-  /* Progress Bar — BUG-34: added ARIA roles via JS */
-  .progress-wrap { margin: 8px 0; }
-  .progress-header { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; font-weight: 600; color: var(--muted); }
-  .progress-track { background: var(--surface2); border-radius: 6px; height: 10px; overflow: hidden; }
-  .progress-fill { height: 100%; border-radius: 6px; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
+  /* Progress Bar */
+  .progress-wrap { margin: 12px 0; }
+  .progress-header { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; font-weight: 600; color: var(--text); }
+  .progress-track { background: var(--surface2); border-radius: 8px; height: 12px; overflow: hidden; border: 1px solid var(--border); }
+  .progress-fill { height: 100%; border-radius: 8px; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
 
-  /* Recommendation Cards — BUG-26-FIX: minmax(min(340px,100%)) for narrow phones */
-  .buckets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 24px; }
-  .bucket-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
-  .bucket-badge { padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  /* Recommendation Cards */
+  .buckets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 24px; }
+  .bucket-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .bucket-badge { padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
   .dream .bucket-badge   { background: rgba(167, 139, 250, 0.15); color: #a78bfa; border: 1px solid rgba(167, 139, 250, 0.3); }
   .target .bucket-badge  { background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); }
   .safe .bucket-badge    { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
   .very_safe .bucket-badge { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
 
-  .rec-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; transition: all 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-  .rec-card.level-dream { border-left: 3px solid #a78bfa; }
-  .rec-card.level-target { border-left: 3px solid #60a5fa; }
-  .rec-card.level-safe { border-left: 3px solid #34d399; }
-  .rec-card.level-very_safe { border-left: 3px solid #4ade80; }
-  .rec-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
-  .rec-card.expanded { border-color: var(--blue); }
-  .rec-main { padding: 20px; cursor: pointer; display: flex; flex-direction: column; gap: 12px; }
-  .rec-header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-  .rec-title-group { flex: 1; min-width: 0; }
-  .rec-inst { font-size: 1.1rem; font-weight: 700; color: var(--text); line-height: 1.3; }
-  .rec-branch { font-size: 0.9rem; color: var(--blue); font-weight: 600; margin-top: 4px; }
-  .rec-meta { font-size: 0.75rem; color: var(--muted); margin-top: 6px; display: flex; gap: 8px; flex-wrap: wrap; }
-  .rec-scores-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+  .rec-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .rec-card.level-dream { border-left: 4px solid #a78bfa; }
+  .rec-card.level-target { border-left: 4px solid #60a5fa; }
+  .rec-card.level-safe { border-left: 4px solid #34d399; }
+  .rec-card.level-very_safe { border-left: 4px solid #4ade80; }
+  .rec-card:hover { border-color: var(--muted); transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,0.2); }
+  .rec-card.expanded { border-color: var(--blue); box-shadow: 0 8px 24px rgba(79, 142, 247, 0.15); }
+  .rec-main { padding: 24px; cursor: pointer; display: flex; flex-direction: column; gap: 16px; position: relative; }
+  .rec-main::after { content: '▼'; position: absolute; right: 24px; bottom: 24px; font-size: 0.8rem; color: var(--muted); transition: transform 0.3s; }
+  .rec-card.expanded .rec-main::after { transform: rotate(180deg); color: var(--blue); }
   
-  /* Badges */
-  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-  .badge { padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
-  .badge-green { background: rgba(52, 211, 153, 0.1); color: var(--green); border: 1px solid rgba(52, 211, 153, 0.2); }
-  .badge-amber { background: rgba(251, 191, 36, 0.1); color: var(--amber); border: 1px solid rgba(251, 191, 36, 0.2); }
+  .rec-header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+  .rec-title-group { flex: 1; min-width: 0; }
+  .rec-inst { font-size: 1.25rem; font-weight: 800; color: var(--text); line-height: 1.3; }
+  .rec-branch { font-size: 1rem; color: var(--blue); font-weight: 600; margin-top: 6px; }
+  .rec-meta { font-size: 0.8rem; color: var(--muted); margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; font-weight: 500; }
+  .rec-scores-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px; }
+  
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .badge { padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+  .badge-green { background: rgba(52, 211, 153, 0.15); color: var(--green); border: 1px solid rgba(52, 211, 153, 0.25); }
+  .badge-amber { background: rgba(251, 191, 36, 0.15); color: var(--amber); border: 1px solid rgba(251, 191, 36, 0.25); }
 
-  /* Expanded Detail */
-  .rec-detail { padding: 0 20px 20px 20px; border-top: 1px solid var(--border); background: rgba(0,0,0,0.15); }
-  .rec-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-  .detail-box { background: var(--surface2); padding: 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
-  .detail-box h4 { font-size: 0.8rem; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; }
+  .rec-detail { padding: 0 24px 24px 24px; background: rgba(0,0,0,0.15); border-top: 1px solid var(--border); animation: slideDown 0.3s ease-out forwards; transform-origin: top; }
+  @keyframes slideDown { from { opacity: 0; transform: scaleY(0.95); } to { opacity: 1; transform: scaleY(1); } }
+  
+  .rec-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+  .detail-box { background: var(--surface2); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+  .detail-box h4 { font-size: 0.85rem; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; letter-spacing: 0.05em; display: flex; align-items: center; gap: 8px; font-weight: 700; }
   ul.custom-list { list-style: none; padding: 0; margin: 0; }
-  ul.custom-list li { font-size: 0.85rem; padding: 6px 0; color: var(--text); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: flex-start; gap: 8px; }
+  ul.custom-list li { font-size: 0.9rem; padding: 8px 0; color: var(--text); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
   ul.custom-list li:last-child { border-bottom: none; padding-bottom: 0; }
-  ul.custom-list.pros li::before { content: '✓'; color: var(--green); font-weight: bold; flex-shrink: 0; }
-  ul.custom-list.cons li::before { content: '✗'; color: var(--red); font-weight: bold; flex-shrink: 0; }
-  ul.custom-list.neutral li::before { content: '→'; color: var(--blue); font-weight: bold; flex-shrink: 0; }
+  ul.custom-list.pros li::before { content: '✓'; color: var(--green); font-weight: bold; font-size: 1rem; }
+  ul.custom-list.cons li::before { content: '✗'; color: var(--red); font-weight: bold; font-size: 1rem; }
+  ul.custom-list.neutral li::before { content: '→'; color: var(--blue); font-weight: bold; font-size: 1rem; }
 
-  /* Timeline */
-  .timeline { margin-top: 12px; padding-left: 8px; border-left: 2px solid var(--border); }
-  .timeline-item { position: relative; padding-left: 20px; margin-bottom: 16px; }
-  .timeline-item:last-child { margin-bottom: 0; }
-  .timeline-item::before { content: ''; position: absolute; left: -14px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--blue); border: 2px solid var(--surface2); }
-  .timeline-year { font-size: 0.7rem; font-weight: 700; color: var(--purple); text-transform: uppercase; margin-bottom: 2px; }
-  .timeline-desc { font-size: 0.85rem; color: var(--text); }
-
-  .rec-actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
-
-  /* AI Explanation */
-  .ai-explanation { background: linear-gradient(to right, rgba(30, 36, 64, 0.8), rgba(26, 29, 39, 0.9)); border: 1px solid var(--blue); border-radius: 16px; padding: 32px; margin-bottom: 32px; position: relative; }
-  .ai-explanation::before { content: '🤖 AI Counselor'; position: absolute; top: -12px; left: 24px; background: var(--blue); color: #fff; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; }
-  .ai-explanation-content { display: grid; grid-template-columns: 1fr; gap: 24px; font-size: 0.95rem; line-height: 1.6; color: var(--text); }
+  /* Structured AI Explanation */
+  .ai-explanation { background: linear-gradient(145deg, rgba(30, 36, 64, 0.9), rgba(26, 29, 39, 0.95)); border: 1px solid rgba(79, 142, 247, 0.4); border-radius: 20px; padding: 32px 32px 32px 32px; margin-bottom: 40px; position: relative; box-shadow: 0 8px 32px rgba(79, 142, 247, 0.1); }
+  .ai-explanation::before { content: '🤖 AI Counselor Analysis'; position: absolute; top: -14px; left: 32px; background: linear-gradient(135deg, var(--blue), var(--purple)); color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.05em; box-shadow: 0 4px 12px rgba(79,142,247,0.3); }
+  .ai-explanation-content { font-size: 1rem; line-height: 1.7; color: var(--text); display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 12px; }
   @media (min-width: 768px) { .ai-explanation-content { grid-template-columns: 1fr 1fr; } }
+  .ai-section h3 { font-size: 1.1rem; color: var(--blue); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .ai-section p { margin-bottom: 12px; color: #d1d5db; }
 
   /* Branch Comparison */
-  .compare-container { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 32px; }
-  .compare-controls { display: flex; gap: 16px; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; }
-  .compare-controls .form-group { flex: 1; min-width: 200px; }
-  .compare-error { background: rgba(248, 113, 113, 0.1); border: 1px solid var(--red); padding: 12px 16px; border-radius: 8px; color: #fca5a5; margin-bottom: 16px; }
-  .compare-table-wrapper { overflow-x: auto; }
-  .compare-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 600px; }
-  .compare-table th, .compare-table td { padding: 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  .compare-table th { font-size: 0.85rem; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-  .compare-table td { font-size: 0.95rem; }
-  .compare-winner { background: rgba(52, 211, 153, 0.1); border-left: 2px solid var(--green); }
+  .compare-container { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin-bottom: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+  .compare-controls { display: flex; gap: 20px; align-items: flex-end; margin-bottom: 32px; flex-wrap: wrap; }
+  .compare-controls .form-group { flex: 1; min-width: 240px; }
+  .compare-table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  .compare-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 600px; background: var(--surface2); }
+  .compare-table th, .compare-table td { padding: 20px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .compare-table th { font-size: 0.85rem; text-transform: uppercase; color: var(--muted); font-weight: 700; letter-spacing: 0.05em; background: rgba(0,0,0,0.2); }
+  .compare-table td { font-size: 1rem; font-weight: 500; }
+  .compare-winner { background: rgba(52, 211, 153, 0.08); border-left: 3px solid var(--green); position: relative; }
+  .compare-winner::after { content: '🏆'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; opacity: 0.8; }
+  .ai-verdict-card { margin-bottom: 24px; padding: 24px; background: linear-gradient(135deg, rgba(79,142,247,0.1), rgba(167,139,250,0.1)); border: 1px solid rgba(79,142,247,0.3); border-radius: 16px; }
+  .ai-verdict-card h3 { color: var(--blue); font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
 
-  /* Chat Chips */
-  .chat-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
-  .chat-chip { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
-  .chat-chip:hover { background: rgba(79, 142, 247, 0.15); border-color: var(--blue); color: var(--blue); }
+  /* Chat UI */
+  .chat-container { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; display: flex; flex-direction: column; height: 600px; max-height: 80vh; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+  .chat-header { padding: 20px 24px; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+  .chat-header h2 { font-size: 1.2rem; margin: 0; }
+  .chat-messages { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+  .chat-msg { padding: 16px 20px; border-radius: 16px; font-size: 1rem; line-height: 1.6; max-width: 85%; }
+  .chat-msg.user { background: var(--blue); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; box-shadow: 0 4px 12px rgba(79, 142, 247, 0.2); }
+  .chat-msg.ai { background: var(--surface2); border: 1px solid var(--border); color: var(--text); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .chat-msg.ai p { margin-bottom: 10px; }
+  .chat-msg.ai p:last-child { margin-bottom: 0; }
+  .chat-msg.ai strong { color: #fff; }
+  .chat-msg.ai ul, .chat-msg.ai ol { margin-left: 20px; margin-bottom: 10px; }
+  .chat-sources { font-size: 0.75rem; color: var(--muted); margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 6px; }
+  .chat-input-area { padding: 20px 24px; background: var(--surface2); border-top: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-end; }
+  .chat-input { flex: 1; padding: 16px; font-size: 1rem; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); color: var(--text); resize: none; min-height: 56px; max-height: 150px; font-family: inherit; }
+  .chat-input:focus { border-color: var(--blue); outline: none; box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.15); }
+  .chat-chips { display: flex; flex-wrap: wrap; gap: 10px; padding: 16px 24px; background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--border); }
+  .chat-chip { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+  .chat-chip:hover { background: rgba(79, 142, 247, 0.15); border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+  .typing-indicator { display: flex; gap: 4px; padding: 8px 12px; }
+  .typing-dot { width: 6px; height: 6px; background: var(--muted); border-radius: 50%; animation: typing 1.4s infinite ease-in-out both; }
+  .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+  .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+  @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); background: var(--blue); } }
 
-  /* Spinner */
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+  /* Empty State */
+  .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 24px; text-align: center; background: var(--surface); border: 1px dashed var(--border); border-radius: 20px; margin-top: 20px; }
+  .empty-state-svg { width: 120px; height: 120px; margin-bottom: 24px; opacity: 0.8; }
+  .empty-state h3 { font-size: 1.5rem; color: var(--text); margin-bottom: 12px; font-weight: 700; }
+  .empty-state p { font-size: 1.05rem; color: var(--muted); max-width: 400px; line-height: 1.6; }
 
-  /* Responsive — BUG-25, BUG-26, BUG-30 fixes */
+  /* Footer */
+  .footer { margin-top: 64px; padding: 40px 20px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); background: var(--surface); font-size: 0.9rem; }
+  .footer-tech { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+  .tech-badge { background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); }
+
+  /* Responsive */
   @media (max-width: 768px) {
     .hero-dashboard { grid-template-columns: 1fr; }
-    .hero-stats-grid { grid-template-columns: repeat(3, 1fr); }
+    .hero-stats-grid { grid-template-columns: 1fr 1fr 1fr; }
     .rec-scores-row { grid-template-columns: 1fr; gap: 12px; }
-    .rec-detail-grid { grid-template-columns: 1fr !important; }
+    .rec-detail-grid { grid-template-columns: 1fr; }
     .compare-controls { flex-direction: column; }
     .compare-controls .form-group { min-width: 100%; }
+    .header h1 { font-size: 2.2rem; }
   }
-  @media (max-width: 420px) {
-    /* BUG-25-FIX: On very narrow screens, collapse hero stats to 1-col */
-    .hero-stats-grid { grid-template-columns: 1fr; gap: 8px; }
-    .hero-stat { padding: 12px; }
-    .hero-stat-val { font-size: 1.2rem; }
-  }
-
-  /* Empty state */
-  .empty-state { text-align: center; padding: 60px 24px; color: var(--muted); }
-  .empty-state .icon { font-size: 3rem; margin-bottom: 16px; }
-  .empty-state p { font-size: 1rem; line-height: 1.6; }
-
-  /* Print Styles for PDF Export */
-  @media print {
-    body { background: #fff; color: #000; }
-    .tabs, .header, .ai-explanation, .compare-controls, .chat-chips { display: none !important; }
-    .hero-card, .rec-card, .card { border: 1px solid #ccc; box-shadow: none; break-inside: avoid; }
-    .hero-title, .hero-sub, .rec-meta, .bucket-badge { color: #555 !important; }
-    .progress-track { border: 1px solid #ccc; background: #eee; }
-    .progress-fill { border: 1px solid #000; }
-    #panel-results { display: block !important; }
-    .rec-actions { display: none !important; }
+  @media (max-width: 480px) {
+    .hero-stats-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 <div id="root"></div>
 <script type="text/babel">
+
 const { useState, useEffect, useCallback, useRef } = React;
-const API = '';  // same origin
+const API = '';
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
+// Marked config
+marked.setOptions({ breaks: true, gfm: true });
 
-// BUG-02/03/04/07-FIX: Safe percentage formatter — returns 0 for null/undefined/NaN
 function safePct(val) {
   const n = val ?? 0;
   const pct = Math.round(n * 100);
   return isNaN(pct) ? 0 : pct;
 }
 
-// BUG-14-FIX: Extract FastAPI error detail correctly (uses 'detail' not 'error')
 async function extractApiError(response) {
   try {
     const body = await response.json();
@@ -225,42 +258,32 @@ async function extractApiError(response) {
   }
 }
 
-// ── Components ────────────────────────────────────────────────────────────────
+// ── Components ────────────────────────────────────────────────────────
 
-// BUG-34/35-FIX: Added role="progressbar" and aria-valuenow for accessibility
-function ProgressBar({ label, value, color = '#4f8ef7', highlight = false, id, tooltip }) {
+function ProgressBar({ label, value, color = '#4f8ef7', highlight = false, id }) {
   const pct = safePct(value);
   const barId = id || `pb-${label.replace(/\s+/g, '-').toLowerCase()}`;
   return (
-    <div className="progress-wrap" title={tooltip || `Score based on historical closing ranks and variance`}>
+    <div className="progress-wrap">
       <div className="progress-header">
         <span id={`${barId}-label`}>{label}</span>
         <span style={{ color: highlight ? color : 'var(--muted)' }} aria-hidden="true">{pct}%</span>
       </div>
-      <div
-        className="progress-track"
-        role="progressbar"
-        aria-valuenow={pct}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-labelledby={`${barId}-label`}
-        aria-valuetext={`${pct}%`}
-      >
+      <div className="progress-track" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-labelledby={`${barId}-label`}>
         <div className="progress-fill" style={{ width: `${pct}%`, background: color }} />
       </div>
     </div>
   );
 }
 
-// BUG-17-FIX: PipelineAnimation accepts an `active` prop so the caller can
-// cancel the callback when the API has already failed
 function PipelineAnimation({ onComplete, active }) {
   const [step, setStep] = useState(0);
   const steps = [
+    "Reading Student Profile...",
     "Detecting Career Persona...",
     "Matching Interests...",
-    "Searching Knowledge Base...",
-    "Ranking Programs...",
+    "Evaluating Programs...",
+    "Retrieving Knowledge...",
     "Generating AI Explanation..."
   ];
 
@@ -272,26 +295,26 @@ function PipelineAnimation({ onComplete, active }) {
       setStep(current);
       if (current >= steps.length) {
         clearInterval(interval);
-        // Only call onComplete if still active (API hasn't failed)
-        setTimeout(() => { if (active) onComplete(); }, 500);
+        setTimeout(() => { if (active) onComplete(); }, 600);
       }
     }, 800);
     return () => clearInterval(interval);
   }, [active, onComplete]);
 
   return (
-    <div className="pipeline-container" role="status" aria-label="Generating recommendations — please wait">
-      <div className="pipeline-title">Generating Recommendations</div>
-      <div aria-live="polite" aria-atomic="false">
+    <div className="pipeline-container" role="status">
+      <div className="pipeline-title">Generating Personalized Recommendations</div>
+      <div className="pipeline-steps">
         {steps.map((text, i) => {
           let statusClass = "pipeline-step";
           let icon = null;
-          if (i < step) { statusClass += " done"; icon = <span aria-hidden="true">✓</span>; }
-          else if (i === step) { statusClass += " active"; icon = <span className="spinner" aria-hidden="true" />; }
+          if (i < step) { statusClass += " done"; icon = "✓"; }
+          else if (i === step) { statusClass += " active"; icon = "↻"; }
+          else { icon = "•"; }
           return (
             <div key={i} className={statusClass}>
               <div className="step-icon">{icon}</div>
-              <span>{text}</span>
+              <span style={{ fontWeight: i === step ? 600 : 400 }}>{text}</span>
             </div>
           );
         })}
@@ -300,49 +323,49 @@ function PipelineAnimation({ onComplete, active }) {
   );
 }
 
-function RecCard({ rec, level, onCompare, onAskAI, onDownloadPDF }) {
+function EmptyState({ title, msg, iconSvg }) {
+  return (
+    <div className="empty-state">
+      <div className="empty-state-svg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width: '100%', height: '100%'}}>
+          {iconSvg || <circle cx="12" cy="12" r="10"></circle>}
+        </svg>
+      </div>
+      <h3>{title}</h3>
+      <p>{msg}</p>
+    </div>
+  );
+}
+
+function RecCard({ rec, level, onCompare, onAskAI }) {
   const [open, setOpen] = useState(false);
   const expl = rec.explanation || {};
   const comp = rec.compatibility || {};
   const scores = rec.scores || {};
   const rc = rec.reason_codes || {};
 
-  // BUG-01-FIX: Use safePct for all probability/score values
   const prob = safePct(rec.admission_probability);
-  const probColor = prob >= 80 ? '#34d399' : prob >= 50 ? '#4f8ef7' : prob >= 25 ? '#fbbf24' : '#f87171';
+  const probColor = prob >= 80 ? 'var(--green)' : prob >= 50 ? 'var(--blue)' : prob >= 25 ? 'var(--amber)' : 'var(--red)';
   const cardId = `rec-${rec.institute?.replace(/\s+/g, '-')}-${rec.branch?.replace(/\s+/g, '-')}`.toLowerCase().replace(/[^a-z0-9-]/g, '');
-
-  const handleToggle = () => setOpen(o => !o);
-  const handleKeyDown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleToggle(); }};
 
   return (
     <div className={`rec-card level-${level} ${open ? 'expanded' : ''}`} id={cardId}>
-      {/* BUG-32-FIX: aria-label describes which recommendation is being expanded */}
-      <div
-        className="rec-main"
-        onClick={handleToggle}
-        tabIndex={0}
-        role="button"
-        aria-expanded={open}
-        aria-controls={`${cardId}-detail`}
-        aria-label={`${rec.institute} — ${rec.branch}. Admission probability ${prob}%. Click to ${open ? 'collapse' : 'expand'} details.`}
-        onKeyDown={handleKeyDown}
-      >
+      <div className="rec-main" onClick={() => setOpen(!open)} tabIndex={0} role="button" aria-expanded={open} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(!open); } }}>
         <div className="rec-header-row">
           <div className="rec-title-group">
             <div className="rec-inst">{rec.institute}</div>
             <div className="rec-branch">{rec.branch}</div>
             <div className="rec-meta">
-              {rec.closing_rank && <span>Closing: {rec.closing_rank.toLocaleString()}</span>}
+              {rec.closing_rank && <span>Closing Rank: {rec.closing_rank.toLocaleString()}</span>}
               <span aria-hidden="true">•</span>
-              <span>{rec.state_quota || 'AI'}</span>
+              <span>{rec.state_quota || 'AI Quota'}</span>
               <span aria-hidden="true">•</span>
               <span>{rec.gender === 'Female-Only' ? 'Female-Only' : 'Gender Neutral'}</span>
             </div>
           </div>
           <div style={{ textAlign: 'right', flexShrink: 0 }}>
-            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: probColor }}>{prob}%</div>
-            <div style={{ fontSize: '0.7rem', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Admission</div>
+            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: probColor, lineHeight: 1 }}>{prob}%</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 700, marginTop: 4 }}>Admission</div>
           </div>
         </div>
 
@@ -351,11 +374,10 @@ function RecCard({ rec, level, onCompare, onAskAI, onDownloadPDF }) {
           <ProgressBar label="Career Fit" value={comp.career_match ?? 0} color="#4f8ef7" id={`${cardId}-career`} />
         </div>
 
-        {/* BUG-08-FIX: Use (array || []) pattern to avoid .map on undefined */}
         {(rc.labels || []).length > 0 && (
-          <div className="badges" aria-label="Recommendation highlights">
-            {(rc.labels || []).slice(0,3).map((b, i) => <span key={i} className="badge badge-green">{b}</span>)}
-            {(rc.warnings || []).slice(0,1).map((w, i) => <span key={i} className="badge badge-amber">{w}</span>)}
+          <div className="badges">
+            {(rc.labels || []).slice(0,3).map((b, i) => <span key={i} className="badge badge-green">✦ {b}</span>)}
+            {(rc.warnings || []).slice(0,1).map((w, i) => <span key={i} className="badge badge-amber">⚠ {w}</span>)}
           </div>
         )}
       </div>
@@ -365,81 +387,67 @@ function RecCard({ rec, level, onCompare, onAskAI, onDownloadPDF }) {
           <div className="rec-detail-grid">
             <div className="detail-box">
               <h4>🎯 Strengths</h4>
-              <ul className="custom-list pros" aria-label="Strengths">
-                {(expl.pros || []).map((p, i) => <li key={i}><span>{p}</span></li>)}
+              <ul className="custom-list pros">
+                {(expl.pros || []).map((p, i) => <li key={i}>{p}</li>)}
               </ul>
             </div>
             <div className="detail-box">
               <h4>⚠ Things to Consider</h4>
-              <ul className="custom-list cons" aria-label="Considerations">
-                {(expl.cons || []).map((c, i) => <li key={i}><span>{c}</span></li>)}
-                {(expl.risks || []).map((r, i) => <li key={`r${i}`}><span>{r}</span></li>)}
+              <ul className="custom-list cons">
+                {(expl.cons || []).map((c, i) => <li key={i}>{c}</li>)}
+                {(expl.risks || []).map((r, i) => <li key={`r${i}`}>{r}</li>)}
               </ul>
             </div>
           </div>
 
           <div className="rec-detail-grid">
             <div className="detail-box">
-              <h4>🚀 Career Roadmap</h4>
+              <h4>🚀 Career Opportunities</h4>
               {(expl.career_roadmap || []).length > 0 ? (
-                <div className="timeline" aria-label="Career timeline">
-                  {(expl.career_roadmap || []).map((item, i) => {
-                    const parts = item.split(':');
-                    const year = parts.length > 1 ? parts[0] : `Step ${i+1}`;
-                    const desc = parts.length > 1 ? parts.slice(1).join(':') : item;
-                    return (
-                      <div key={i} className="timeline-item">
-                        <div className="timeline-year">{year}</div>
-                        <div className="timeline-desc">{desc.trim()}</div>
-                      </div>
-                    );
-                  })}
-                </div>
+                <ul className="custom-list neutral">
+                  {(expl.career_roadmap || []).map((item, i) => <li key={i}>{item}</li>)}
+                </ul>
               ) : (
-                <ul className="custom-list neutral" aria-label="Career paths">
-                  {(expl.career_paths || []).slice(0,4).map((p, i) => <li key={i}><span>{p}</span></li>)}
+                <ul className="custom-list neutral">
+                  {(expl.career_paths || []).slice(0,4).map((p, i) => <li key={i}>{p}</li>)}
                 </ul>
               )}
             </div>
             <div className="detail-box">
-              <h4>💼 Top Recruiters & Salary</h4>
+              <h4>💼 Top Recruiters</h4>
               {expl.expected_salary && (
-                <div style={{ marginBottom: 12, fontSize: '1.1rem', fontWeight: 700, color: 'var(--green)' }}>
-                  {expl.expected_salary}
+                <div style={{ marginBottom: 16, fontSize: '1.2rem', fontWeight: 800, color: 'var(--green)' }}>
+                  {expl.expected_salary} <span style={{fontSize: '0.8rem', color: 'var(--muted)', fontWeight: 500}}>expected</span>
                 </div>
               )}
-              <ul className="custom-list neutral" aria-label="Top recruiters">
-                {(expl.recruiters || []).map((r, i) => <li key={i}><span>{r}</span></li>)}
+              <ul className="custom-list neutral">
+                {(expl.recruiters || []).map((r, i) => <li key={i}>{r}</li>)}
               </ul>
             </div>
           </div>
 
-          <div className="detail-box" style={{ marginTop: 20 }}>
+          <div className="detail-box" style={{ marginTop: 24 }}>
             <h4>📊 Score Breakdown</h4>
-            {/* BUG-30-FIX: Inline grid style removed, uses .rec-detail-grid class via media query */}
             <div className="rec-detail-grid" style={{ marginTop: 0 }}>
               <div>
-                <ProgressBar label="Rank Fit" value={scores.rank_fit ?? 0} color="#34d399" id={`${cardId}-rankfit`} />
-                <ProgressBar label="Interest Match" value={scores.interest_match ?? 0} color="#34d399" id={`${cardId}-interest`} />
-                <ProgressBar label="Institute Quality" value={scores.institute_strength ?? 0} color="#4f8ef7" id={`${cardId}-instq`} />
+                <ProgressBar label="Rank Fit" value={scores.rank_fit ?? 0} color="#34d399" />
+                <ProgressBar label="Interest Match" value={scores.interest_match ?? 0} color="#34d399" />
+                <ProgressBar label="Institute Quality" value={scores.institute_strength ?? 0} color="#4f8ef7" />
               </div>
               <div>
-                <ProgressBar label="Placements" value={comp.placement_strength ?? 0} color="#4f8ef7" id={`${cardId}-place`} />
-                <ProgressBar label="Research" value={comp.research_match ?? 0} color="#a78bfa" id={`${cardId}-research`} />
-                <ProgressBar label="Coding Culture" value={comp.coding_match ?? 0} color="#a78bfa" id={`${cardId}-coding`} />
+                <ProgressBar label="Placements" value={comp.placement_strength ?? 0} color="#4f8ef7" />
+                <ProgressBar label="Research" value={comp.research_match ?? 0} color="#a78bfa" />
+                <ProgressBar label="Coding Culture" value={comp.coding_match ?? 0} color="#a78bfa" />
               </div>
             </div>
           </div>
 
-          <div className="rec-actions">
-            <button className="btn btn-sm btn-ghost" onClick={(e) => { e.stopPropagation(); onCompare(rec.branch); }} aria-label={`Compare ${rec.branch} with another branch`}>
-              ⚖ Compare Branch
+          <div className="btn-row" style={{ marginTop: 24 }}>
+            <button className="btn btn-sm btn-ghost" onClick={(e) => { e.stopPropagation(); onCompare(rec.branch); }}>
+              ⚖ Compare {rec.branch}
             </button>
-            <button className="btn btn-sm btn-ghost" onClick={(e) => { e.stopPropagation(); onAskAI(`Why should I choose ${rec.institute} for ${rec.branch}?`); }} aria-label={`Ask AI about ${rec.institute} ${rec.branch}`}>
-              💬 Ask AI
-            </button>
-            <button className="btn btn-sm btn-ghost" onClick={(e) => { e.stopPropagation(); onDownloadPDF(); }} aria-label="Download PDF report">
-              📄 Download PDF
+            <button className="btn btn-sm btn-ghost" onClick={(e) => { e.stopPropagation(); onAskAI(`Why should I choose ${rec.institute} for ${rec.branch}?`); }}>
+              💬 Ask AI about this choice
             </button>
           </div>
         </div>
@@ -448,109 +456,87 @@ function RecCard({ rec, level, onCompare, onAskAI, onDownloadPDF }) {
   );
 }
 
-// BUG-47-FIX: BranchComparison accepts initialBranchA to pre-populate from rec card
 function BranchComparison({ onAskAI, initialBranchA }) {
   const branches = [
-    "Computer Science and Engineering",
-    "Electronics and Communication Engineering",
-    "Electrical Engineering",
-    "Mechanical Engineering",
-    "Civil Engineering",
-    "Chemical Engineering",
-    "Mathematics and Computing",
-    "Engineering Physics",
+    "Computer Science and Engineering", "Electronics and Communication Engineering",
+    "Electrical Engineering", "Mechanical Engineering", "Civil Engineering",
+    "Chemical Engineering", "Mathematics and Computing", "Engineering Physics",
     "Data Science and Artificial Intelligence"
   ];
-
   const [branchA, setBranchA] = useState(initialBranchA || branches[0]);
   const [branchB, setBranchB] = useState(branches[1]);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-  // BUG-15-FIX: Added error state so user sees feedback on failure
   const [error, setError] = useState(null);
 
-  // Update branchA when initialBranchA changes (from RecCard compare button)
-  useEffect(() => {
-    if (initialBranchA) setBranchA(initialBranchA);
-  }, [initialBranchA]);
+  useEffect(() => { if (initialBranchA) setBranchA(initialBranchA); }, [initialBranchA]);
 
   const compare = async () => {
-    setLoading(true);
-    setError(null);
-    setData(null);
+    setLoading(true); setError(null); setData(null);
     try {
       const r = await fetch(`${API}/compare/branches?branch_a=${encodeURIComponent(branchA)}&branch_b=${encodeURIComponent(branchB)}`);
-      // BUG-12-FIX: Check r.ok and surface error to user
-      if (!r.ok) {
-        const msg = await extractApiError(r);
-        setError(`Comparison failed: ${msg}`);
-        return;
-      }
-      const d = await r.json();
-      setData(d);
-    } catch (e) {
-      setError(`Network error: ${e.message}`);
-    } finally {
-      setLoading(false);
-    }
+      if (!r.ok) { const msg = await extractApiError(r); setError(`Comparison failed: ${msg}`); return; }
+      setData(await r.json());
+    } catch (e) { setError(`Network error: ${e.message}`); } 
+    finally { setLoading(false); }
   };
 
-  const getVal = (profile, key) => {
-    const v = profile?.[key];
-    return v != null ? v : 'N/A';
-  };
+  const getVal = (profile, key) => profile?.[key] ?? 'N/A';
+  
+  // Empty state icon
+  const compareIcon = <path d="M12 20V10M18 20V4M6 20v-4" />;
 
   return (
     <div className="compare-container">
-      <h2 style={{ marginBottom: 16 }}>Interactive Branch Comparison</h2>
+      <h2 style={{ marginBottom: 24, fontSize: '1.5rem' }}>⚖️ Interactive Branch Comparison</h2>
       <div className="compare-controls">
         <div className="form-group">
-          <label htmlFor="compare-branch-a">Branch 1</label>
-          <select id="compare-branch-a" value={branchA} onChange={e=>setBranchA(e.target.value)}>
+          <label>Branch 1</label>
+          <select value={branchA} onChange={e=>setBranchA(e.target.value)}>
             {branches.map(b => <option key={b} value={b}>{b}</option>)}
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="compare-branch-b">Branch 2</label>
-          <select id="compare-branch-b" value={branchB} onChange={e=>setBranchB(e.target.value)}>
+          <label>Branch 2</label>
+          <select value={branchB} onChange={e=>setBranchB(e.target.value)}>
             {branches.map(b => <option key={b} value={b}>{b}</option>)}
           </select>
         </div>
-        <button className="btn btn-primary" onClick={compare} disabled={loading || branchA === branchB} aria-label="Compare selected branches">
-          {loading ? <><span className="spinner" aria-hidden="true" /> Comparing...</> : 'Compare →'}
+        <button className="btn btn-primary" onClick={compare} disabled={loading || branchA === branchB} style={{ padding: '14px 32px' }}>
+          {loading ? 'Comparing...' : 'Compare Options →'}
         </button>
       </div>
 
-      {error && <div className="compare-error" role="alert">{error}</div>}
+      {error && <div role="alert" style={{ color: '#fca5a5', background: 'rgba(248, 113, 113, 0.1)', padding: 16, borderRadius: 12, marginBottom: 24 }}>⚠ {error}</div>}
+
+      {!data && !loading && !error && (
+        <EmptyState title="Select two branches" msg="Compare academics, placements, and coding culture side-by-side." iconSvg={compareIcon} />
+      )}
 
       {data && (
-        <div className="compare-table-wrapper">
+        <div className="compare-table-wrapper" style={{ animation: 'slideDown 0.4s ease-out' }}>
           {data.verdict && (
-            <div style={{ marginBottom: 20, padding: 16, background: 'var(--surface2)', borderRadius: 8, borderLeft: '4px solid var(--blue)' }}>
-              <strong>AI Verdict:</strong> {data.verdict}
+            <div className="ai-verdict-card">
+              <h3>🤖 AI Verdict</h3>
+              <div dangerouslySetInnerHTML={{ __html: marked.parse(data.verdict) }} style={{ color: 'var(--text)', lineHeight: 1.6 }} />
             </div>
           )}
-          <table className="compare-table" aria-label={`Comparison of ${branchA} vs ${branchB}`}>
+          <table className="compare-table">
             <thead>
               <tr>
-                <th scope="col">Metric</th>
-                <th scope="col">{data.branch_a?.name || branchA}</th>
-                <th scope="col">{data.branch_b?.name || branchB}</th>
+                <th style={{ width: '20%' }}>Metric</th>
+                <th style={{ width: '40%', fontSize: '1.1rem', color: 'var(--text)' }}>{data.branch_a?.name || branchA}</th>
+                <th style={{ width: '40%', fontSize: '1.1rem', color: 'var(--text)' }}>{data.branch_b?.name || branchB}</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Median Salary</td>
-                <td className={data.head_to_head?.median_salary === branchA ? 'compare-winner' : ''}>
-                  {data.branch_a?.profile?.median_lpa ? `~${data.branch_a.profile.median_lpa} LPA` : 'N/A'}
-                </td>
-                <td className={data.head_to_head?.median_salary === branchB ? 'compare-winner' : ''}>
-                  {data.branch_b?.profile?.median_lpa ? `~${data.branch_b.profile.median_lpa} LPA` : 'N/A'}
-                </td>
+                <td className={data.head_to_head?.median_salary === branchA ? 'compare-winner' : ''}>{data.branch_a?.profile?.median_lpa ? `₹${data.branch_a.profile.median_lpa} LPA` : 'N/A'}</td>
+                <td className={data.head_to_head?.median_salary === branchB ? 'compare-winner' : ''}>{data.branch_b?.profile?.median_lpa ? `₹${data.branch_b.profile.median_lpa} LPA` : 'N/A'}</td>
               </tr>
               <tr>
                 <td>Coding Intensity</td>
-                {/* BUG-09/10-FIX: Use ?? 'N/A' to prevent "undefined/5" renders */}
                 <td className={data.head_to_head?.coding_intensity === branchA ? 'compare-winner' : ''}>{getVal(data.branch_a?.profile, 'coding_intensity') !== 'N/A' ? `${data.branch_a.profile.coding_intensity}/5` : 'N/A'}</td>
                 <td className={data.head_to_head?.coding_intensity === branchB ? 'compare-winner' : ''}>{getVal(data.branch_b?.profile, 'coding_intensity') !== 'N/A' ? `${data.branch_b.profile.coding_intensity}/5` : 'N/A'}</td>
               </tr>
@@ -561,14 +547,8 @@ function BranchComparison({ onAskAI, initialBranchA }) {
               </tr>
               <tr>
                 <td>Startup Fit</td>
-                {/* BUG-11-FIX: Explicit N/A fallback */}
-                <td>{data.branch_a?.startup_fit || 'N/A'}</td>
-                <td>{data.branch_b?.startup_fit || 'N/A'}</td>
-              </tr>
-              <tr>
-                <td>Top Recruiters</td>
-                <td>{(data.branch_a?.tier1_recruiters || []).join(', ') || 'N/A'}</td>
-                <td>{(data.branch_b?.tier1_recruiters || []).join(', ') || 'N/A'}</td>
+                <td className={data.head_to_head?.startup_fit === branchA ? 'compare-winner' : ''}>{data.branch_a?.startup_fit || 'N/A'}</td>
+                <td className={data.head_to_head?.startup_fit === branchB ? 'compare-winner' : ''}>{data.branch_b?.startup_fit || 'N/A'}</td>
               </tr>
               <tr>
                 <td>MBA Transition</td>
@@ -577,9 +557,9 @@ function BranchComparison({ onAskAI, initialBranchA }) {
               </tr>
             </tbody>
           </table>
-          <div style={{ marginTop: 16 }}>
-            <button className="btn btn-sm btn-ghost" onClick={() => onAskAI(`Explain in detail the difference between ${branchA} and ${branchB}`)}>
-              💬 Ask AI Counselor about this comparison
+          <div className="btn-row" style={{ padding: 24, background: 'var(--surface2)' }}>
+            <button className="btn btn-primary" onClick={() => onAskAI(`Explain the pros and cons between ${branchA} and ${branchB} for my profile.`)}>
+              💬 Ask AI Counselor about this
             </button>
           </div>
         </div>
@@ -588,22 +568,20 @@ function BranchComparison({ onAskAI, initialBranchA }) {
   );
 }
 
-// ── Main App ──────────────────────────────────────────────────────────────────
+// ── Main App ────────────────────────────────────────────────────────
 
 function App() {
   const [tab, setTab] = useState('form');
   const [loading, setLoading] = useState(false);
-  // BUG-17-FIX: pipelineActive tracks whether animation should call onComplete
   const [pipelineActive, setPipelineActive] = useState(false);
   const [error, setError] = useState(null);
   const [result, setResult] = useState(null);
-  // BUG-47-FIX: track which branch to pre-populate in comparison
   const [compareInitBranch, setCompareInitBranch] = useState(null);
   const [chatQ, setChatQ] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const [chatLoading, setChatLoading] = useState(false);
-  // BUG-23-FIX: ref to scroll chat to bottom on new messages
   const chatEndRef = useRef(null);
+  const chatInputRef = useRef(null);
 
   const defaultForm = {
     jee_advanced_rank: 3500, gender: 'male', category: 'OPEN', home_state: 'Maharashtra',
@@ -614,395 +592,262 @@ function App() {
   };
 
   const [form, setForm] = useState(defaultForm);
-
   const setField = (k, v) => setForm(f => ({ ...f, [k]: v }));
   
-  const resetForm = () => setForm(defaultForm);
-
-  // BUG-23-FIX: auto-scroll chat to bottom on new messages
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [chatHistory, chatLoading]);
+  useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [chatHistory, chatLoading]);
 
   const submit = useCallback(async () => {
-    if (form.jee_advanced_rank < 1 || form.jee_advanced_rank > 1500000) {
-      setError("Please enter a valid JEE rank between 1 and 1,500,000.");
-      return;
-    }
-    setLoading(true);
-    setPipelineActive(true);
-    setError(null);
-    setResult(null);
+    if (form.jee_advanced_rank < 1) { setError("Invalid JEE Rank."); return; }
+    setLoading(true); setPipelineActive(true); setError(null); setResult(null);
     try {
-      const r = await fetch(`${API}/recommend`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (!r.ok) {
-        // BUG-14-FIX: use extractApiError to get 'detail' field from FastAPI errors
-        const msg = await extractApiError(r);
-        throw new Error(msg);
-      }
-      const data = await r.json();
-      setResult(data);
-      // Pipeline animation will call onPipelineComplete when it finishes
+      const r = await fetch(`${API}/recommend`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+      if (!r.ok) throw new Error(await extractApiError(r));
+      setResult(await r.json());
     } catch (e) {
-      setError(e.message);
-      setLoading(false);
-      // BUG-17-FIX: Cancel pipeline so it doesn't switch to results on failure
-      setPipelineActive(false);
+      setError(e.message); setLoading(false); setPipelineActive(false);
     }
   }, [form]);
 
-  // BUG-17-FIX: Only switch tab if both pipeline done AND result ready
   const onPipelineComplete = useCallback(() => {
-    setLoading(false);
-    setPipelineActive(false);
-    if (result) {
-      setTab('results');
-    }
-    // If result not yet loaded, don't switch — result useEffect below handles it
+    setLoading(false); setPipelineActive(false);
+    if (result) setTab('results');
   }, [result]);
 
-  // If result arrives after pipeline finishes, switch tab then
-  useEffect(() => {
-    if (result && !pipelineActive && !loading) {
-      setTab('results');
-    }
-  }, [result, pipelineActive, loading]);
+  useEffect(() => { if (result && !pipelineActive && !loading) setTab('results'); }, [result, pipelineActive, loading]);
 
-  // BUG-18-FIX: jumpToChat actually sends the message instead of just pre-filling
-  const jumpToChat = useCallback((query) => {
-    setTab('chat');
-    // Send after a tick so the chat tab renders first
-    setTimeout(() => sendChatMessage(query), 50);
-  }, []);
+  const jumpToChat = useCallback((q) => { setTab('chat'); setTimeout(() => sendChatMessage(q), 50); }, []);
+  const openCompare = useCallback((b) => { setCompareInitBranch(b); setTab('compare'); }, []);
 
-  // BUG-47-FIX: openCompare pre-populates comparison with the chosen branch
-  const openCompare = useCallback((branch) => {
-    setCompareInitBranch(branch);
-    setTab('compare');
-  }, []);
-
-  const sendChatMessage = async (question) => {
-    if (!question?.trim()) return;
-    const q = question.trim();
-    setChatQ('');
-    setChatLoading(true);
-    setChatHistory(h => [...h, { role: 'user', text: q }]);
+  const sendChatMessage = async (q) => {
+    if (!q?.trim()) return;
+    const query = q.trim();
+    setChatQ(''); setChatLoading(true);
+    setChatHistory(h => [...h, { role: 'user', text: query }]);
     try {
-      const payload = {
-        student: form,
-        question: q,
-        // Send history up to last 4 turns (excluding error messages)
-        history: chatHistory.filter(h => !h.text.startsWith('⚠')).slice(-4)
-      };
-      
-      const r = await fetch(`${API}/counselor/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      // BUG-13-FIX: check r.ok before reading body
-      if (!r.ok) {
-        const msg = await extractApiError(r);
-        setChatHistory(h => [...h, { role: 'ai', text: `⚠ Error: ${msg}` }]);
-        return;
-      }
+      const payload = { student: form, question: query, history: chatHistory.filter(h => !h.text.startsWith('⚠')).slice(-4) };
+      const r = await fetch(`${API}/counselor/chat`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      if (!r.ok) throw new Error(await extractApiError(r));
       const data = await r.json();
-      setChatHistory(h => [...h, { role: 'ai', text: data.answer || 'No response received.', sources: data.sources }]);
+      setChatHistory(h => [...h, { role: 'ai', text: data.answer || 'No response.', sources: data.sources }]);
     } catch (e) {
       setChatHistory(h => [...h, { role: 'ai', text: `⚠ Network error: ${e.message}` }]);
     } finally {
       setChatLoading(false);
+      chatInputRef.current?.focus();
     }
   };
 
-  const handleSendChat = () => sendChatMessage(chatQ);
-
-  const handleDownloadPDF = () => {
-    // Generate simple PDF export using CSS @media print
-    window.print();
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (!chatLoading) sendChatMessage(chatQ);
+    }
   };
 
-  // BUG-06/07-FIX: Safe access to persona fields
   const persona = result?.persona || {};
   const topRec = result?.buckets?.dream?.[0] || result?.buckets?.target?.[0] || null;
+
+  // Icons
+  const profileIcon = <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />;
+  const recIcon = <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />;
+  const chatIcon = <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z" />;
 
   return (
     <div className="app">
       <div className="header">
-        <h1 id="app-title">🎓 JEE AI Counselor</h1>
-        <p>Intelligent college &amp; branch recommendations — powered by your profile, not just your rank</p>
+        <h1>🎓 JEE AI Counselor</h1>
+        <p>Intelligent college and branch recommendations powered by your complete profile and AI analytics, not just your rank.</p>
       </div>
 
-      {/* BUG-31-FIX: tab bar has role="tablist" and each tab has role="tab" + aria-selected */}
-      <div className="tabs" role="tablist" aria-label="Application sections">
-        <button
-          className={`tab ${tab === 'form' ? 'active' : ''}`}
-          role="tab"
-          aria-selected={tab === 'form'}
-          aria-controls="panel-form"
-          id="tab-form"
-          onClick={() => setTab('form')}
-        >Profile</button>
-        <button
-          className={`tab ${tab === 'results' ? 'active' : ''}`}
-          role="tab"
-          aria-selected={tab === 'results'}
-          aria-controls="panel-results"
-          id="tab-results"
-          disabled={!result}
-          onClick={() => setTab('results')}
-        >Recommendations {result ? `(${result.total_scored})` : ''}</button>
-        <button
-          className={`tab ${tab === 'compare' ? 'active' : ''}`}
-          role="tab"
-          aria-selected={tab === 'compare'}
-          aria-controls="panel-compare"
-          id="tab-compare"
-          onClick={() => setTab('compare')}
-        >Compare</button>
-        <button
-          className={`tab ${tab === 'chat' ? 'active' : ''}`}
-          role="tab"
-          aria-selected={tab === 'chat'}
-          aria-controls="panel-chat"
-          id="tab-chat"
-          onClick={() => setTab('chat')}
-        >AI Counselor</button>
+      <div className="tabs" role="tablist">
+        <button className={`tab ${tab === 'form' ? 'active' : ''}`} role="tab" onClick={() => setTab('form')}>1. Profile Setup</button>
+        <button className={`tab ${tab === 'results' ? 'active' : ''}`} role="tab" disabled={!result} onClick={() => setTab('results')}>2. AI Recommendations {result ? `(${result.total_scored})` : ''}</button>
+        <button className={`tab ${tab === 'compare' ? 'active' : ''}`} role="tab" onClick={() => setTab('compare')}>3. Compare Branches</button>
+        <button className={`tab ${tab === 'chat' ? 'active' : ''}`} role="tab" onClick={() => setTab('chat')}>4. AI Chat</button>
       </div>
 
-      {/* BUG-36-FIX: Error banner with role="alert" so screen readers announce it */}
-      {error && (
-        <div role="alert" aria-live="assertive" style={{ background: 'rgba(248, 113, 113, 0.1)', border: '1px solid var(--red)', padding: 16, borderRadius: 8, color: '#fca5a5', marginBottom: 16 }}>
-          ⚠ {error}
-        </div>
-      )}
+      {error && <div role="alert" style={{ background: 'rgba(248, 113, 113, 0.1)', border: '1px solid var(--red)', padding: '16px 20px', borderRadius: 12, color: '#fca5a5', marginBottom: 24, fontSize: '1.05rem', fontWeight: 500 }}>⚠ {error}</div>}
 
-      {/* Pipeline */}
       {pipelineActive && <PipelineAnimation onComplete={onPipelineComplete} active={pipelineActive} />}
 
-      {/* ── FORM TAB ── */}
       {tab === 'form' && !pipelineActive && (
-        <div id="panel-form" role="tabpanel" aria-labelledby="tab-form">
+        <div role="tabpanel">
           <div className="card">
-            <h2>📋 Your Details</h2>
+            <h2>📋 Basic Details</h2>
             <div className="form-grid">
-              <div className="form-group">
-                <label htmlFor="rank-input">JEE Advanced Rank</label>
-                <input id="rank-input" type="number" value={form.jee_advanced_rank} min={1} max={1500000} onChange={e => setField('jee_advanced_rank', parseInt(e.target.value) || '')} />
-              </div>
-              <div className="form-group">
-                <label htmlFor="gender-select">Gender</label>
-                <select id="gender-select" value={form.gender} onChange={e => setField('gender', e.target.value)}>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other / Prefer not to say</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label htmlFor="category-select">Category</label>
-                <select id="category-select" value={form.category} onChange={e => setField('category', e.target.value)}>
-                  {['OPEN','OBC-NCL','SC','ST','EWS','OPEN-PwD','OBC-NCL-PwD'].map(c => <option key={c}>{c}</option>)}
-                </select>
-              </div>
-              <div className="form-group">
-                <label htmlFor="state-select">Home State</label>
-                <select id="state-select" value={form.home_state} onChange={e => setField('home_state', e.target.value)}>
-                  {['Andhra Pradesh','Assam','Bihar','Delhi','Gujarat','Haryana','Jammu & Kashmir','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Odisha','Punjab','Rajasthan','Tamil Nadu','Telangana','Uttar Pradesh','Uttarakhand','West Bengal'].map(s => <option key={s}>{s}</option>)}
-                </select>
-              </div>
+              <div className="form-group"><label>JEE Advanced Rank</label><input type="number" value={form.jee_advanced_rank} min={1} onChange={e => setField('jee_advanced_rank', parseInt(e.target.value) || '')} /></div>
+              <div className="form-group"><label>Gender</label><select value={form.gender} onChange={e => setField('gender', e.target.value)}><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select></div>
+              <div className="form-group"><label>Category</label><select value={form.category} onChange={e => setField('category', e.target.value)}>{['OPEN','OBC-NCL','SC','ST','EWS','OPEN-PwD','OBC-NCL-PwD'].map(c => <option key={c}>{c}</option>)}</select></div>
+              <div className="form-group"><label>Home State</label><select value={form.home_state} onChange={e => setField('home_state', e.target.value)}>{['Andhra Pradesh','Assam','Bihar','Delhi','Gujarat','Haryana','Jammu & Kashmir','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Odisha','Punjab','Rajasthan','Tamil Nadu','Telangana','Uttar Pradesh','Uttarakhand','West Bengal'].map(s => <option key={s}>{s}</option>)}</select></div>
             </div>
           </div>
-
           <div className="card">
-            <h2>🎯 Branch Interests</h2>
+            <h2>🎯 Academic Interests</h2>
             <div className="form-grid">
               {[
-                {k:'interest_coding', l:'Coding'},
-                {k:'interest_ai_ml', l:'AI / ML'},
-                {k:'interest_research', l:'Research'},
-                {k:'interest_core_engineering', l:'Core Engineering'},
-                {k:'interest_electronics', l:'Electronics'},
-                {k:'interest_mechanical', l:'Mechanical'},
-                {k:'interest_civil', l:'Civil'},
-                {k:'interest_chemical', l:'Chemical'},
+                {k:'interest_coding', l:'Coding'}, {k:'interest_ai_ml', l:'AI / ML'}, {k:'interest_research', l:'Research'}, {k:'interest_core_engineering', l:'Core Engg'},
+                {k:'interest_electronics', l:'Electronics'}, {k:'interest_mechanical', l:'Mechanical'}, {k:'interest_civil', l:'Civil'}, {k:'interest_chemical', l:'Chemical'}
               ].map(d => (
                 <div key={d.k} className="form-group">
-                  <label htmlFor={`range-${d.k}`}>
-                    {d.l} <span style={{ color: 'var(--blue)' }}>{Math.round(form[d.k] * 100)}%</span>
-                  </label>
-                  {/* BUG-35-FIX: aria-valuetext provides human-readable percentage */}
-                  <input
-                    id={`range-${d.k}`}
-                    type="range"
-                    min="0" max="1" step="0.05"
-                    value={form[d.k]}
-                    aria-valuetext={`${Math.round(form[d.k] * 100)}%`}
-                    onChange={e => setField(d.k, parseFloat(e.target.value))}
-                  />
-                  <div className="range-label" aria-hidden="true"><span>Low</span><span>High</span></div>
+                  <label>{d.l} <span style={{ color: 'var(--blue)' }}>{Math.round(form[d.k] * 100)}%</span></label>
+                  <input type="range" min="0" max="1" step="0.05" value={form[d.k]} onChange={e => setField(d.k, parseFloat(e.target.value))} />
+                  <div className="range-label"><span>None</span><span>High</span></div>
                 </div>
               ))}
             </div>
           </div>
-
           <div className="card">
-            <h2>🚀 Goals &amp; Priorities</h2>
-            <fieldset style={{ border: 'none', padding: 0, marginBottom: 24 }}>
-              <legend style={{ fontSize: '0.85rem', color: 'var(--muted)', marginBottom: 12, fontWeight: 600 }}>Select all that apply</legend>
-              <div className="form-grid">
-                {[
-                  ['wants_startup','🚀 Startup / Own Company'],
-                  ['wants_mba','📊 MBA later'],
-                  ['wants_govt_job','🏛️ Government / PSU'],
-                  ['wants_higher_studies_abroad','🌍 MS/PhD Abroad'],
-                  ['wants_research','🔬 Research Career'],
-                ].map(([k, lbl]) => (
-                  <label key={k} style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: '0.9rem', padding: '12px', background: form[k] ? 'rgba(79, 142, 247, 0.15)' : 'var(--surface2)', border: `1px solid ${form[k] ? 'var(--blue)' : 'var(--border)'}`, borderRadius: 8, transition: 'all 0.2s', fontWeight: form[k] ? 600 : 400 }}>
-                    <input type="checkbox" checked={form[k]} onChange={e => setField(k, e.target.checked)} style={{ width: 'auto' }} />
-                    {lbl}
-                  </label>
-                ))}
-              </div>
-            </fieldset>
+            <h2>🚀 Career Goals & Priorities</h2>
+            <div className="form-grid" style={{ marginBottom: 32 }}>
+              {[
+                ['wants_startup','🚀 Startup Founder'], ['wants_mba','📊 MBA / Mgmt'], ['wants_govt_job','🏛️ PSU / Govt'],
+                ['wants_higher_studies_abroad','🌍 MS/PhD Abroad'], ['wants_research','🔬 Scientist/Research']
+              ].map(([k, lbl]) => (
+                <label key={k} style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', padding: '16px', background: form[k] ? 'rgba(79, 142, 247, 0.15)' : 'var(--surface2)', border: `2px solid ${form[k] ? 'var(--blue)' : 'transparent'}`, borderRadius: 12, transition: 'all 0.2s', fontWeight: form[k] ? 600 : 500 }}>
+                  <input type="checkbox" checked={form[k]} onChange={e => setField(k, e.target.checked)} style={{ width: '18px', height: '18px', accentColor: 'var(--blue)' }} />
+                  {lbl}
+                </label>
+              ))}
+            </div>
             <div className="form-grid">
               {[
-                {k:'salary_priority', l:'Salary Priority', low:'Work-Life Balance', high:'Max Salary'},
-                {k:'brand_priority', l:'Brand Priority', low:'Any Institute', high:'Top IIT Only'},
-                {k:'location_flexibility', l:'Location Flexibility', low:'Home State', high:'Anywhere in India'},
+                {k:'salary_priority', l:'Compensation vs Balance', low:'WLB', high:'Max CTC'},
+                {k:'brand_priority', l:'Brand vs Branch', low:'Branch First', high:'Brand First'},
+                {k:'location_flexibility', l:'Location Flexibility', low:'Home State', high:'Anywhere'},
               ].map(d => (
                 <div key={d.k} className="form-group">
-                  <label htmlFor={`range-${d.k}`}>
-                    {d.l} <span style={{ color: 'var(--blue)' }}>{Math.round(form[d.k] * 100)}%</span>
-                  </label>
-                  <input
-                    id={`range-${d.k}`}
-                    type="range" min="0" max="1" step="0.05"
-                    value={form[d.k]}
-                    aria-valuetext={`${Math.round(form[d.k] * 100)}%`}
-                    onChange={e => setField(d.k, parseFloat(e.target.value))}
-                  />
-                  <div className="range-label" aria-hidden="true"><span>{d.low}</span><span>{d.high}</span></div>
+                  <label>{d.l} <span style={{ color: 'var(--purple)' }}>{Math.round(form[d.k] * 100)}%</span></label>
+                  <input type="range" min="0" max="1" step="0.05" value={form[d.k]} onChange={e => setField(d.k, parseFloat(e.target.value))} />
+                  <div className="range-label"><span>{d.low}</span><span>{d.high}</span></div>
                 </div>
               ))}
             </div>
           </div>
-
-          <div className="btn-row">
-            <button
-              id="submit-btn"
-              className="btn btn-primary"
-              onClick={submit}
-              disabled={loading}
-              style={{ padding: '16px 32px', fontSize: '1.1rem' }}
-              aria-busy={loading}
-            >
-              {loading ? <><span className="spinner" aria-hidden="true" /> Processing...</> : '✨ Generate AI Recommendations'}
-            </button>
-            <button className="btn btn-ghost" onClick={resetForm} disabled={loading}>
-              Reset Profile
+          <div className="btn-row" style={{ justifyContent: 'center', marginTop: 40 }}>
+            <button className="btn btn-primary" onClick={submit} disabled={loading} style={{ padding: '18px 40px', fontSize: '1.15rem' }}>
+              {loading ? 'Processing...' : '✨ Generate AI Recommendations'}
             </button>
           </div>
         </div>
       )}
 
-      {/* ── RESULTS TAB ── */}
       {tab === 'results' && !pipelineActive && (
-        <div id="panel-results" role="tabpanel" aria-labelledby="tab-results">
+        <div role="tabpanel">
           {!result ? (
-            <div className="empty-state">
-              <div className="icon">📊🤷‍♂️</div>
-              <p>No recommendations yet.<br/>Fill in your profile and click <strong>Generate AI Recommendations</strong>.</p>
-            </div>
+            <EmptyState title="No recommendations generated yet" msg="Please complete your profile setup and click Generate to see your personalized AI recommendations." iconSvg={recIcon} />
           ) : (
             <>
+              {/* Analytics Bar */}
+              <div className="analytics-bar">
+                <div className="analytic-item">
+                  <div className="analytic-icon">🏫</div>
+                  <div className="analytic-data"><span className="analytic-val">{result.total_scored}</span><span className="analytic-lbl">Programs Evaluated</span></div>
+                </div>
+                <div className="analytic-item">
+                  <div className="analytic-icon">🎯</div>
+                  <div className="analytic-data"><span className="analytic-val">{result.buckets?.target?.length || 0}</span><span className="analytic-lbl">Target Matches</span></div>
+                </div>
+                <div className="analytic-item">
+                  <div className="analytic-icon">🔒</div>
+                  <div className="analytic-data"><span className="analytic-val">{(result.buckets?.safe?.length || 0) + (result.buckets?.very_safe?.length || 0)}</span><span className="analytic-lbl">Safe Options</span></div>
+                </div>
+                <div className="analytic-item">
+                  <div className="analytic-icon">📚</div>
+                  <div className="analytic-data"><span className="analytic-val">4 Sources</span><span className="analytic-lbl">Knowledge Base</span></div>
+                </div>
+              </div>
+
               {/* Hero Dashboard */}
               <div className="hero-dashboard">
-                <div className="hero-card">
-                  <div>
-                    <div className="hero-title">Career Persona</div>
-                    {/* BUG-06-FIX: Safe access to persona fields */}
-                    <div className="hero-value">{persona.icon || '🎯'} {persona.label || 'Analyst'}</div>
-                    <div className="hero-sub">Confidence: {safePct(persona.confidence)}%</div>
-                  </div>
-                  {result.student_summary && (
-                    <div style={{ marginTop: 24, padding: 16, background: 'rgba(0,0,0,0.2)', borderRadius: 12, border: '1px solid rgba(255,255,255,0.05)' }}>
-                      <p style={{ fontSize: '0.9rem', color: 'var(--text)', lineHeight: 1.5 }}>{result.student_summary}</p>
-                    </div>
+                <div className="hero-card best-rec">
+                  {topRec ? (
+                    <>
+                      <div>
+                        <div className="hero-title">🏆 Top AI Recommendation</div>
+                        <div className="hero-value">{topRec.institute}</div>
+                        <div className="hero-sub">{topRec.branch}</div>
+                        <p style={{ fontSize: '0.95rem', color: 'var(--text)', lineHeight: 1.6, opacity: 0.9 }}>
+                          Based on your rank, interests, and career goals, this is the strongest recommendation for you.
+                        </p>
+                      </div>
+                      <div className="hero-stats-grid">
+                        <div className="hero-stat">
+                          <div className="hero-stat-val highlight">{safePct(topRec.scores?.overall)}%</div>
+                          <div className="hero-stat-lbl">Overall Match</div>
+                        </div>
+                        <div className="hero-stat">
+                          <div className="hero-stat-val">{safePct(topRec.admission_probability)}%</div>
+                          <div className="hero-stat-lbl">Admission Prob</div>
+                        </div>
+                        <div className="hero-stat">
+                          <div className="hero-stat-val">{safePct(topRec.compatibility?.career_match)}%</div>
+                          <div className="hero-stat-lbl">Career Fit</div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div><h3 style={{color:'var(--text)'}}>No strong matches found.</h3><p style={{color:'var(--muted)'}}>Try adjusting your preferences.</p></div>
                   )}
                 </div>
 
-                {topRec && (
-                  <div className="hero-card" style={{ background: 'linear-gradient(145deg, rgba(79, 142, 247, 0.1), var(--surface))' }}>
-                    <div>
-                      <div className="hero-title">Top Recommendation</div>
-                      <div className="hero-value">{topRec.institute}</div>
-                      <div className="hero-sub" style={{ color: 'var(--green)' }}>{topRec.branch}</div>
-                    </div>
-                    <div className="hero-stats-grid" style={{ marginTop: 24 }}>
-                      {/* BUG-02/03/04-FIX: All use safePct to prevent NaN% */}
-                      <div className="hero-stat">
-                        <div className="hero-stat-val highlight">{safePct(topRec.scores?.overall)}%</div>
-                        <div className="hero-stat-lbl">Overall Match</div>
+                <div className="hero-card">
+                  <div>
+                    <div className="hero-title">👤 Detected Persona</div>
+                    <div className="hero-value">{persona.icon || '🎯'} {persona.label || 'Analyst'}</div>
+                    <div style={{ color: 'var(--blue)', fontSize: '0.9rem', fontWeight: 600, marginBottom: 16 }}>AI Confidence: {safePct(persona.confidence)}%</div>
+                    
+                    <div style={{ marginTop: 20 }}>
+                      <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 12, fontWeight: 700 }}>Contributing Factors</h4>
+                      
+                      <div className="persona-factor">
+                        <div className="persona-factor-label"><span>Coding Interest</span><span>{safePct(form.interest_coding)}%</span></div>
+                        <div className="persona-factor-bar"><div className="persona-factor-fill" style={{ width: `${safePct(form.interest_coding)}%`, background: 'var(--blue)' }}></div></div>
                       </div>
-                      <div className="hero-stat">
-                        <div className="hero-stat-val">{safePct(topRec.admission_probability)}%</div>
-                        <div className="hero-stat-lbl">Admission Prob</div>
+                      
+                      <div className="persona-factor">
+                        <div className="persona-factor-label"><span>AI / ML Interest</span><span>{safePct(form.interest_ai_ml)}%</span></div>
+                        <div className="persona-factor-bar"><div className="persona-factor-fill" style={{ width: `${safePct(form.interest_ai_ml)}%`, background: 'var(--teal)' }}></div></div>
                       </div>
-                      <div className="hero-stat">
-                        <div className="hero-stat-val">{safePct(topRec.compatibility?.career_match)}%</div>
-                        <div className="hero-stat-lbl">Career Fit</div>
+                      
+                      <div className="persona-factor">
+                        <div className="persona-factor-label"><span>Salary Priority</span><span>{safePct(form.salary_priority)}%</span></div>
+                        <div className="persona-factor-bar"><div className="persona-factor-fill" style={{ width: `${safePct(form.salary_priority)}%`, background: 'var(--green)' }}></div></div>
                       </div>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
 
-              {/* AI Explanation */}
               {result.counselor_insight && (
-                <div className="ai-explanation" aria-label="AI Counselor insight">
+                <div className="ai-explanation">
                   <div className="ai-explanation-content">
-                    <div>
-                      <h3 style={{ fontSize: '1.1rem', color: 'var(--blue)', marginBottom: 8 }}>Why this strategy?</h3>
-                      <p>{result.counselor_insight}</p>
+                    <div className="ai-section">
+                      <h3>💡 Why this strategy?</h3>
+                      <div dangerouslySetInnerHTML={{ __html: marked.parse(result.counselor_insight) }} style={{ fontSize: '1.05rem' }}></div>
                     </div>
-                    <div>
-                      <h3 style={{ fontSize: '1.1rem', color: 'var(--blue)', marginBottom: 8 }}>Next Steps</h3>
-                      <p>Review the categorized buckets below. Compare specific branches or ask the AI Counselor deep-dive questions to finalize your choices.</p>
-                      <div style={{ display: 'flex', gap: 12, marginTop: 16, flexWrap: 'wrap' }}>
-                        <button className="btn btn-sm btn-primary" onClick={() => setTab('chat')}>💬 Ask AI Counselor</button>
-                        <button className="btn btn-sm btn-ghost" onClick={handleDownloadPDF}>📄 Export PDF Report</button>
-                      </div>
+                    <div className="ai-section">
+                      <h3>🚀 Recommended Action Plan</h3>
+                      <p>1. Review the detailed cards below for your Target and Safe options.</p>
+                      <p>2. Use the <strong>Compare Branches</strong> tool to resolve any ties.</p>
+                      <p>3. Have doubts? Open the <strong>AI Chat</strong> to ask specific questions.</p>
+                      <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={() => setTab('chat')}>💬 Start AI Session</button>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* Buckets */}
               <div className="buckets">
                 {['dream', 'target', 'safe', 'very_safe'].map(level => {
                   const recs = result.buckets?.[level] || [];
                   if (!recs.length) return null;
-                  const labels = { dream: 'Dream', target: 'Target', safe: 'Safe', very_safe: 'Very Safe' };
+                  const labels = { dream: 'Dream Options', target: 'Target Matches', safe: 'Safe Bets', very_safe: 'Very Safe' };
                   return (
-                    <section key={level} aria-labelledby={`bucket-${level}`}>
+                    <section key={level}>
                       <div className="bucket-header">
-                        <h2 id={`bucket-${level}`} className={`bucket-badge ${level}`}>{labels[level]}</h2>
-                        <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>{recs.length} Option{recs.length !== 1 ? 's' : ''}</span>
+                        <h2 className={`bucket-badge ${level}`}>{labels[level]}</h2>
+                        <span style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 600 }}>{recs.length} matches</span>
                       </div>
-                      {recs.map((r, i) => (
-                        <RecCard
-                          key={`${level}-${i}`}
-                          rec={r}
-                          level={level}
-                          onCompare={openCompare}
-                          onAskAI={jumpToChat}
-                          onDownloadPDF={handleDownloadPDF}
-                        />
-                      ))}
+                      {recs.map((r, i) => <RecCard key={i} rec={r} level={level} onCompare={openCompare} onAskAI={jumpToChat} />)}
                     </section>
                   );
                 })}
@@ -1012,112 +857,82 @@ function App() {
         </div>
       )}
 
-      {/* ── COMPARE TAB ── */}
       {tab === 'compare' && (
-        <div id="panel-compare" role="tabpanel" aria-labelledby="tab-compare">
-          {/* BUG-47-FIX: Pass initialBranchA so compare pre-fills from rec card */}
+        <div role="tabpanel">
           <BranchComparison onAskAI={jumpToChat} initialBranchA={compareInitBranch} />
         </div>
       )}
 
-      {/* ── CHAT TAB ── */}
       {tab === 'chat' && (
-        <div id="panel-chat" role="tabpanel" aria-labelledby="tab-chat">
-          <div className="card" style={{ marginBottom: 16 }}>
-            <h2>🤖 AI Counselor Chat</h2>
-            <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>
-              Ask specific follow-up questions. I have full context of your profile, interests, and the JoSAA knowledge base.
-            </p>
-          </div>
+        <div role="tabpanel">
+          <div className="chat-container">
+            <div className="chat-header">
+              <div style={{ fontSize: '1.5rem' }}>🤖</div>
+              <div>
+                <h2>AI Counselor</h2>
+                <div style={{ fontSize: '0.8rem', color: 'var(--green)', fontWeight: 600 }}>● Online & Ready</div>
+              </div>
+            </div>
+            
+            <div className="chat-chips">
+              <span style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: 600, marginRight: 8, display: 'flex', alignItems: 'center' }}>Suggested:</span>
+              {["Why not IIT Kanpur?", "Which branch is best for startups?", "Explain home state advantage in NITs", "Should I choose EE over Mechanical?"].map(q => (
+                <button key={q} className="chat-chip" onClick={() => sendChatMessage(q)} disabled={chatLoading}>{q}</button>
+              ))}
+            </div>
 
-          {/* BUG-33-FIX: Emoji wrapped in aria-hidden span */}
-          <div className="chat-chips" aria-label="Suggested questions">
-            {[
-              "Why not IIT Kanpur?",
-              "Should I choose EE over Mechanical?",
-              "Which branch is best for startups?",
-              "Is MnC better than CSE for me?",
-              "Explain home state advantage in NITs",
-            ].map(q => (
-              <button
-                key={q}
-                className="chat-chip"
-                onClick={() => sendChatMessage(q)}
-                disabled={chatLoading}
-                aria-label={`Ask: ${q}`}
-              >
-                <span aria-hidden="true">✨</span> {q}
-              </button>
-            ))}
-          </div>
-
-          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 16, padding: 24, display: 'flex', flexDirection: 'column' }}>
-            <div
-              style={{ overflowY: 'auto', maxHeight: 400, marginBottom: 20 }}
-              aria-live="polite"
-              aria-label="Chat history"
-              role="log"
-            >
+            <div className="chat-messages" role="log" aria-live="polite">
               {chatHistory.length === 0 && (
-                <div style={{ color: 'var(--muted)', textAlign: 'center', padding: '40px 0', fontSize: '0.95rem' }}>
-                  No messages yet. Click a suggestion above or type your own question.
+                <div style={{ textAlign: 'center', color: 'var(--muted)', marginTop: 40 }}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 64, height: 64, opacity: 0.5, marginBottom: 16 }}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"></path></svg>
+                  <p>Ask anything about your profile, branches, or institutes.</p>
                 </div>
               )}
               {chatHistory.map((m, i) => (
-                <div key={i} style={{
-                  padding: '16px 20px', borderRadius: 12, marginBottom: 12, fontSize: '0.95rem', lineHeight: 1.6,
-                  background: m.role === 'user' ? 'rgba(79, 142, 247, 0.1)' : 'var(--surface2)',
-                  border: `1px solid ${m.role === 'user' ? 'rgba(79, 142, 247, 0.3)' : 'var(--border)'}`,
-                  marginLeft: m.role === 'user' ? 'auto' : '0',
-                  maxWidth: '85%',
-                }}>
-                  <div style={{ fontWeight: 700, fontSize: '0.75rem', color: m.role === 'user' ? 'var(--blue)' : 'var(--purple)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                    {m.role === 'user' ? 'You' : 'AI Counselor'}
-                  </div>
-                  <div>{m.text}</div>
-                  {m.sources?.length > 0 && (
-                    <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: 8, borderTop: '1px solid var(--border)', paddingTop: 8 }}>
-                      Sources: {m.sources.join(', ')}
-                    </div>
-                  )}
+                <div key={i} className={`chat-msg ${m.role}`}>
+                  <div dangerouslySetInnerHTML={{ __html: marked.parse(m.text) }} />
+                  {m.sources?.length > 0 && <div className="chat-sources">📚 Sources: {m.sources.join(', ')}</div>}
                 </div>
               ))}
               {chatLoading && (
-                <div style={{ padding: '16px 20px', background: 'var(--surface2)', borderRadius: 12, maxWidth: '85%', color: 'var(--muted)', display: 'inline-flex', alignItems: 'center', gap: 10 }} aria-label="AI is thinking">
-                  <span className="spinner" aria-hidden="true"></span> Thinking...
+                <div className="chat-msg ai" style={{ display: 'inline-flex', padding: '16px 24px' }}>
+                  <div className="typing-indicator"><div className="typing-dot"></div><div className="typing-dot"></div><div className="typing-dot"></div></div>
                 </div>
               )}
-              {/* BUG-23-FIX: Scroll anchor */}
               <div ref={chatEndRef} />
             </div>
 
-            <div style={{ display: 'flex', gap: 12 }}>
-              {/* BUG-37-FIX: aria-label on chat input */}
-              <label htmlFor="chat-input" className="sr-only" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)' }}>Chat message</label>
-              <input
-                id="chat-input"
+            <div className="chat-input-area">
+              <textarea
+                ref={chatInputRef}
+                className="chat-input"
                 value={chatQ}
                 onChange={e => setChatQ(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && !chatLoading && handleSendChat()}
-                placeholder="Type your question..."
+                onKeyDown={handleKeyDown}
+                placeholder="Type your question... (Enter to send, Shift+Enter for new line)"
                 disabled={chatLoading}
-                aria-label="Chat message"
-                style={{ flex: 1, padding: '16px', fontSize: '1rem', borderRadius: 12 }}
+                rows={1}
               />
-              <button
-                id="chat-send-btn"
-                className="btn btn-primary"
-                onClick={handleSendChat}
-                disabled={chatLoading || !chatQ.trim()}
-                style={{ borderRadius: 12, padding: '0 32px' }}
-                aria-label="Send message"
-              >
-                {chatLoading ? <span className="spinner" aria-hidden="true" /> : 'Send'}
+              <button className="btn btn-primary" onClick={() => sendChatMessage(chatQ)} disabled={chatLoading || !chatQ.trim()} style={{ height: 56, padding: '0 32px' }}>
+                Send
               </button>
             </div>
           </div>
         </div>
       )}
+
+      {/* Premium Footer */}
+      <footer className="footer">
+        <p style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text)', marginBottom: 8 }}>JEE AI Counselor</p>
+        <p>Intelligent recommendation engine built for scale and accuracy.</p>
+        <div className="footer-tech">
+          <span className="tech-badge">⚡ FastAPI</span>
+          <span className="tech-badge">🦆 DuckDB</span>
+          <span className="tech-badge">⚛️ React 18</span>
+          <span className="tech-badge">🧠 Groq RAG</span>
+          <span className="tech-badge">📊 JoSAA 2025 Data</span>
+        </div>
+      </footer>
     </div>
   );
 }
