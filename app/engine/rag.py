@@ -394,7 +394,8 @@ class GroqProvider:
             data=payload,
             headers={
                 "Content-Type": "application/json",
-                "Authorization": f"Bearer {self._api_key}"
+                "Authorization": f"Bearer {self._api_key}",
+                "User-Agent": "JEECounselorBot/1.0"
             },
         )
         try:
