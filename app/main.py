@@ -142,6 +142,12 @@ def create_app() -> FastAPI:
     app.include_router(branches.router,   tags=["Data"])
     app.include_router(cutoffs.router,    tags=["Data"])
 
+    from fastapi.responses import RedirectResponse
+    
+    @app.get("/", include_in_schema=False)
+    def root():
+        return RedirectResponse(url="/ui/")
+
     # Serve frontend at /ui to avoid shadowing /docs, /redoc, and API routes
     # Fix: mounting at "/" would intercept /docs and /redoc in some Starlette versions
     frontend_dir = Path(__file__).parent.parent / "frontend"
