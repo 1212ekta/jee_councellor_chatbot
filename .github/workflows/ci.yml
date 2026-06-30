@@ -35,6 +35,11 @@ jobs:
           curl -L -o data/cutoffs/JEE_2025_Cutoffs.xlsx \
             "https://raw.githubusercontent.com/atmabodha/OpenNLP/main/IIT-JEE/JEE_2025_Cutoffs.xlsx"
 
+      - name: Build Database (ETL)
+        env:
+          DATA_DIR: ./data
+        run: python -m app.etl.loader
+
       - name: Run tests
         env:
           ANTHROPIC_API_KEY: ""
