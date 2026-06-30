@@ -271,3 +271,10 @@ class CutoffLoader:
         )
         self.db.commit()
         log.info(f"Loaded {len(rows)} branches")
+
+if __name__ == "__main__":
+    import logging
+    logging.basicConfig(level=logging.INFO)
+    loader = CutoffLoader()
+    stats = loader.load_all()
+    print("ETL Loading Complete:", stats)
