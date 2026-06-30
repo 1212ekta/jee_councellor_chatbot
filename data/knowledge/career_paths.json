@@ -1,0 +1,86 @@
+{
+  "Computer Science and Engineering": {
+    "immediate_roles": ["Software Engineer", "Backend Developer", "ML Engineer", "Data Scientist"],
+    "mid_career": ["Senior SWE", "Engineering Manager", "Architect", "Staff Engineer"],
+    "senior_roles": ["VP Engineering", "CTO", "Distinguished Engineer", "Principal Scientist"],
+    "sectors": ["Product companies", "Fintech", "AI/ML startups", "Consulting", "Quant finance"],
+    "typical_5yr_salary_lpa": "25-60",
+    "gate_relevant": false,
+    "ies_relevant": false,
+    "upsc_friendly": false,
+    "mba_transition": "easy — CS grads get strong IIM shortlists",
+    "startup_friendliness": "very high"
+  },
+  "Electrical Engineering": {
+    "immediate_roles": ["Systems Engineer", "VLSI Designer", "Power Engineer", "R&D Engineer"],
+    "mid_career": ["Lead Engineer", "Technical Manager", "Research Scientist"],
+    "senior_roles": ["Chief Engineer", "VP R&D", "Technical Director"],
+    "sectors": ["Semiconductor", "Power", "Defence", "Telecom", "Automotive"],
+    "typical_5yr_salary_lpa": "15-35",
+    "gate_relevant": true,
+    "ies_relevant": true,
+    "upsc_friendly": true,
+    "mba_transition": "moderate — strong quantitative background helps",
+    "startup_friendliness": "moderate"
+  },
+  "Mechanical Engineering": {
+    "immediate_roles": ["Design Engineer", "Manufacturing Engineer", "Project Engineer"],
+    "mid_career": ["Senior Engineer", "Project Manager", "Operations Manager"],
+    "senior_roles": ["Plant Head", "VP Operations", "Chief Engineer"],
+    "sectors": ["Automobile", "Aerospace", "Defence", "Heavy industry", "Consulting"],
+    "typical_5yr_salary_lpa": "10-22",
+    "gate_relevant": true,
+    "ies_relevant": true,
+    "upsc_friendly": true,
+    "mba_transition": "very easy — mechanical + IIT brand is top IIM combination",
+    "startup_friendliness": "low for tech, high for deep tech/hardware"
+  },
+  "Civil Engineering": {
+    "immediate_roles": ["Site Engineer", "Structural Designer", "Urban Planner"],
+    "mid_career": ["Project Manager", "Structural Consultant", "Government Officer"],
+    "senior_roles": ["Chief Engineer", "Director PWD", "IAS/IES Officer"],
+    "sectors": ["Infrastructure", "Real estate", "Government", "Consulting"],
+    "typical_5yr_salary_lpa": "8-18",
+    "gate_relevant": true,
+    "ies_relevant": true,
+    "upsc_friendly": true,
+    "mba_transition": "moderate",
+    "startup_friendliness": "low"
+  },
+  "Chemical Engineering": {
+    "immediate_roles": ["Process Engineer", "R&D Chemist", "Production Engineer"],
+    "mid_career": ["Senior Process Engineer", "Technical Manager", "Consultant"],
+    "senior_roles": ["Plant Director", "VP Manufacturing", "Research Head"],
+    "sectors": ["Oil & Gas", "Pharma", "Petrochemicals", "Consulting"],
+    "typical_5yr_salary_lpa": "12-28",
+    "gate_relevant": true,
+    "ies_relevant": false,
+    "upsc_friendly": false,
+    "mba_transition": "moderate — McKinsey/BCG hire directly from IIT ChemE",
+    "startup_friendliness": "low for tech, high for climate/biotech"
+  },
+  "Electronics and Communication Engineering": {
+    "immediate_roles": ["VLSI Design Engineer", "Embedded Software Engineer", "Telecom Engineer", "Software Engineer"],
+    "mid_career": ["Silicon Architect", "Project Manager", "Systems Architect", "Engineering Manager"],
+    "senior_roles": ["Chief Technology Officer", "VP Hardware Engineering", "Principal Architect"],
+    "sectors": ["Semiconductor", "Consumer Electronics", "Telecom", "IT/Software", "Automotive"],
+    "typical_5yr_salary_lpa": "18-40",
+    "gate_relevant": true,
+    "ies_relevant": true,
+    "upsc_friendly": true,
+    "mba_transition": "easy",
+    "startup_friendliness": "high"
+  },
+  "Mathematics and Computing": {
+    "immediate_roles": ["Quantitative Analyst", "Data Scientist", "Software Engineer", "Machine Learning Researcher"],
+    "mid_career": ["Senior Quant", "AI Architect", "Engineering Manager", "Research Scientist"],
+    "senior_roles": ["Head of Quantitative Trading", "Chief Data Scientist", "VP Engineering", "Partner"],
+    "sectors": ["High Frequency Trading", "Investment Banking", "Big Tech", "AI Startups"],
+    "typical_5yr_salary_lpa": "30-70",
+    "gate_relevant": false,
+    "ies_relevant": false,
+    "upsc_friendly": false,
+    "mba_transition": "very easy",
+    "startup_friendliness": "very high"
+  }
+}

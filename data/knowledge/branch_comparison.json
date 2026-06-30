@@ -1,0 +1,87 @@
+{
+  "common_comparisons": {
+    "CSE_vs_ECE": {
+      "branches": ["Computer Science and Engineering", "Electronics and Communication Engineering"],
+      "salary_winner": "CSE",
+      "research_winner": "ECE (hardware depth), CSE (AI/ML breadth)",
+      "placement_ease_winner": "CSE",
+      "core_jobs_winner": "ECE",
+      "startup_winner": "CSE",
+      "flexibility_winner": "CSE",
+      "mba_winner": "Equal",
+      "abroad_winner": "Equal",
+      "verdict": "CSE if coding and software career. ECE if VLSI, hardware, or telecom interest.",
+      "key_insight": "ECE at top IITs lets you switch to software easily; CSE switching to core hardware is harder."
+    },
+    "CSE_vs_MnC": {
+      "branches": ["Computer Science and Engineering", "Mathematics and Computing"],
+      "salary_winner": "MnC (quant finance) or Equal (software)",
+      "research_winner": "MnC (stronger theoretical depth)",
+      "placement_ease_winner": "CSE (more companies visit)",
+      "core_jobs_winner": "N/A",
+      "startup_winner": "Equal",
+      "flexibility_winner": "Equal",
+      "mba_winner": "Equal",
+      "abroad_winner": "MnC (PhD applications stronger)",
+      "verdict": "MnC if you love math and want research/quant finance. CSE if you want more industry roles.",
+      "key_insight": "MnC cutoffs are often similar to CSE but the branch is smaller and more selective in feel."
+    },
+    "CSE_vs_EE": {
+      "branches": ["Computer Science and Engineering", "Electrical Engineering"],
+      "salary_winner": "CSE",
+      "research_winner": "EE (deeper hardware research)",
+      "placement_ease_winner": "CSE",
+      "core_jobs_winner": "EE",
+      "startup_winner": "CSE",
+      "flexibility_winner": "CSE",
+      "abroad_winner": "EE (strong for hardware MS programs)",
+      "verdict": "CSE for software/startup path. EE for hardware/research/PSU.",
+      "key_insight": "EE at old IITs offers excellent research depth and VLSI opportunities."
+    },
+    "Mechanical_vs_Civil": {
+      "branches": ["Mechanical Engineering", "Civil Engineering"],
+      "salary_winner": "Mechanical",
+      "research_winner": "Mechanical (robotics, aerospace)",
+      "placement_ease_winner": "Mechanical",
+      "core_jobs_winner": "Equal",
+      "startup_winner": "Mechanical (robotics, EV)",
+      "flexibility_winner": "Mechanical",
+      "mba_winner": "Equal",
+      "govt_winner": "Civil (IES/UPSC preferred)",
+      "verdict": "Mechanical for broader industry + startup options. Civil if government/infrastructure is the goal.",
+      "key_insight": "Civil Engineering is the strongest path for IES (Indian Engineering Services)."
+    },
+    "NIT_CSE_vs_IIT_lower_branch": {
+      "scenario": "NIT Trichy CSE vs IIT (new) Mechanical",
+      "placement_winner": "NIT Trichy CSE",
+      "brand_winner": "IIT",
+      "startup_winner": "NIT Trichy CSE",
+      "research_winner": "IIT",
+      "abroad_winner": "IIT (brand helps for MS)",
+      "flexibility_winner": "NIT Trichy CSE",
+      "verdict": "Almost always take NIT Trichy CSE over IIT in an uninteresting branch.",
+      "key_insight": "Branch > Institute for career outcomes in most cases, except for research and top MBA."
+    },
+    "IIIT_H_CSE_vs_IIT_new_CSE": {
+      "scenario": "IIIT Hyderabad CSE vs New IIT CSE",
+      "placement_winner": "IIIT Hyderabad",
+      "brand_winner": "IIT",
+      "research_winner": "IIIT Hyderabad (AI/ML specifically)",
+      "startup_winner": "IIIT Hyderabad",
+      "abroad_winner": "Roughly equal for CS PhD",
+      "verdict": "IIIT-H CSE is better for software/AI careers. New IIT CSE better only for IIT brand value.",
+      "key_insight": "IIIT-H median package often exceeds new IITs for CS roles."
+    }
+  },
+  "dimension_explanations": {
+    "salary_winner": "Branch with higher median placement package",
+    "research_winner": "Branch offering deeper research opportunities",
+    "placement_ease_winner": "Branch where getting placed is easier (more companies, higher offer rate)",
+    "core_jobs_winner": "Branch directly relevant to core engineering industry jobs",
+    "startup_winner": "Branch with higher startup success probability",
+    "flexibility_winner": "Branch that keeps most career paths open",
+    "mba_winner": "Branch with higher IIM admit rate or stronger MBA candidacy",
+    "abroad_winner": "Branch with stronger MS/PhD admission prospects abroad",
+    "govt_winner": "Branch most relevant for government/PSU/IES/UPSC paths"
+  }
+}

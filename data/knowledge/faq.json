@@ -1,0 +1,70 @@
+{
+  "faqs": [
+    {
+      "id": "branch_vs_institute",
+      "question": "Should I choose a better branch at a lower institute or a lower branch at a better institute?",
+      "answer": "For most career outcomes — especially software, startup, and industry jobs — branch matters more than institute. The one exception is research and top MBA: for those, the IIT brand at any branch gives you more credibility. As a rule: NIT Trichy CSE beats IIT (new) Mechanical for placements. But IIT Kharagpur Mechanical beats NIT Trichy Mechanical for IES or MBA."
+    },
+    {
+      "id": "cse_vs_mnc",
+      "question": "Is Mathematics and Computing (MnC) better than CSE?",
+      "answer": "MnC offers a stronger theoretical foundation and is excellent for quant finance, AI research, and top PhD programs. CSE offers more industry-accessible roles and a higher number of recruiting companies. If you're interested in quant finance, ML research, or a PhD, MnC is often the better choice. For general software engineering, CSE has slightly better immediate job accessibility."
+    },
+    {
+      "id": "new_iit_vs_nit",
+      "question": "Should I choose a new IIT (Ropar, Mandi, Palakkad) CSE over NIT Trichy CSE?",
+      "answer": "For purely career outcomes, NIT Trichy CSE typically wins in placements, salary, and company diversity. New IIT CSE has the IIT brand (useful for MBA/research) and research infrastructure. If placements and startup path are priorities, NIT Trichy CSE. If research or brand value matters more, new IIT CSE."
+    },
+    {
+      "id": "ece_coding",
+      "question": "Can ECE students get software engineering jobs like CSE students?",
+      "answer": "Yes, absolutely — at top IITs, ECE students frequently get the same software engineering roles as CSE students. The key is maintaining a strong coding profile through competitive programming and internships. The 'software switch' from ECE is well-established at IIT Bombay, Madras, Delhi, and Kharagpur. At NITs, the gap between CSE and ECE for software roles is slightly larger."
+    },
+    {
+      "id": "gate_after_btech",
+      "question": "Which branches benefit most from GATE after BTech?",
+      "answer": "GATE is most valuable for Civil, Mechanical, Electrical, Chemical, and Instrumentation Engineering students who want PSU jobs (NTPC, BHEL, ONGC, PGCIL) or M.Tech at IITs. CS students can also do GATE for M.Tech but the software industry generally offers better packages directly after BTech."
+    },
+    {
+      "id": "mba_from_engineering",
+      "question": "Which engineering branches produce the most IIM admits?",
+      "answer": "Mechanical, Electrical, and CSE from IITs produce the most IIM A/B/C admits. The branch matters less than the institute for IIM shortlists — any IIT branch gives you a strong profile. However, Mechanical at old IITs has historically had the highest IIM conversion rates. For non-IIT engineers, CSE and ECE have the strongest IIM shortlist profiles."
+    },
+    {
+      "id": "home_state_quota",
+      "question": "How much does Home State quota help at NITs?",
+      "answer": "Home State (HS) quota gives significant advantage — HS closing ranks at NITs are typically 20-40% more lenient than Other State (OS) ranks. For example, if NIT Trichy CSE OS closing rank is 5000, the HS closing rank might be 7000-8000. This means a student with rank 6500 who can't get OS quota can still secure admission through HS quota."
+    },
+    {
+      "id": "branch_change",
+      "question": "Can I change my branch after the first year?",
+      "answer": "Yes, branch change is possible at most IITs after the first semester/year, but it's extremely competitive. Requirements vary by institute: typically you need a top 5-10% CGPA and the target branch must have vacancies. IIT Bombay, Delhi, Madras, and Kanpur have formal branch change policies. NITs also allow branch change but it's less common. Don't plan your entire strategy around a branch change."
+    },
+    {
+      "id": "dual_degree",
+      "question": "Is a Dual Degree (BTech + MTech) worth it?",
+      "answer": "Dual Degree (5 years, BTech + MTech) is excellent if you want: deep specialisation, stronger research profile, and better MS/PhD prospects abroad. The MTech thesis often doubles as your research sample for PhD applications. Placement-wise, Dual Degree students are eligible for the same placements as BTech students in Year 4 at most IITs. The extra year is well worth it if research is your goal."
+    },
+    {
+      "id": "round_strategy",
+      "question": "How should I approach JoSAA rounds strategically?",
+      "answer": "Round 1: Apply to your dream choices — seats may be available that get filled in later rounds. Rounds 2-4: Lock in your target choices. Round 5-6: Secure your safe/very-safe choices. Always fill every slot — floating between rounds is free. Never reject an offer without a better one in hand. Provisional allotment means you can still get a better seat in subsequent rounds."
+    }
+  ],
+  "glossary": {
+    "JoSAA": "Joint Seat Allocation Authority — conducts centralised counselling for IITs, NITs, IIITs, GFTIs",
+    "CSAB": "Central Seat Allocation Board — conducts counselling for seats unfilled after JoSAA",
+    "CRL": "Common Rank List — the general merit rank ignoring category",
+    "HS quota": "Home State quota at NITs — reserved for students from the institute's home state",
+    "OS quota": "Other State quota at NITs — for students from other states",
+    "AI quota": "All India quota — used for IITs (no state quota distinction)",
+    "PPO": "Pre-Placement Offer — job offer given during internship, converted to full-time after graduation",
+    "GATE": "Graduate Aptitude Test in Engineering — used for M.Tech admissions and PSU recruitment",
+    "IES/ESE": "Indian Engineering Services Examination — conducted by UPSC for government engineering posts",
+    "PSU": "Public Sector Undertaking — government-owned companies like NTPC, BHEL, ONGC, ISRO",
+    "LPA": "Lakhs Per Annum — Indian salary unit (1 LPA = ₹1,00,000 per year)",
+    "Dual Degree": "5-year program combining BTech and MTech — common at IITs",
+    "SOP": "Statement of Purpose — essay required for MS/PhD applications abroad",
+    "GRE": "Graduate Record Examination — standardized test for US graduate admissions"
+  }
+}

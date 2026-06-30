@@ -1,0 +1,50 @@
+{
+  "IIT Bombay": {
+    "median_lpa": 25, "highest_lpa": 3200, "companies_count": 400,
+    "top_recruiters": ["Google", "Microsoft", "Goldman Sachs", "McKinsey", "Uber", "Stripe"],
+    "ppo_percentage": 40, "core_percentage": 20, "international_percentage": 15,
+    "notable": "Highest international offers among all IITs"
+  },
+  "IIT Delhi": {
+    "median_lpa": 24, "highest_lpa": 2800, "companies_count": 350,
+    "top_recruiters": ["Google", "Microsoft", "BCG", "D.E. Shaw", "Amazon", "Bajaj Auto"],
+    "ppo_percentage": 35, "core_percentage": 22, "international_percentage": 12,
+    "notable": "Strongest for consulting and finance roles"
+  },
+  "IIT Madras": {
+    "median_lpa": 22, "highest_lpa": 2400, "companies_count": 320,
+    "top_recruiters": ["Texas Instruments", "Google", "Qualcomm", "McKinsey", "Samsung"],
+    "ppo_percentage": 38, "core_percentage": 28, "international_percentage": 10,
+    "notable": "Best for core tech and semiconductor roles"
+  },
+  "IIT Kanpur": {
+    "median_lpa": 22, "highest_lpa": 2600, "companies_count": 280,
+    "top_recruiters": ["Google", "Jane Street", "Two Sigma", "D.E. Shaw", "Microsoft"],
+    "ppo_percentage": 30, "core_percentage": 20, "international_percentage": 14,
+    "notable": "Best for quant finance and CS research placements"
+  },
+  "IIT Kharagpur": {
+    "median_lpa": 20, "highest_lpa": 2200, "companies_count": 300,
+    "top_recruiters": ["Tata Steel", "L&T", "Schlumberger", "Google", "Microsoft"],
+    "ppo_percentage": 28, "core_percentage": 35, "international_percentage": 8,
+    "notable": "Strongest for core engineering and mining sectors"
+  },
+  "NIT Trichy": {
+    "median_lpa": 12, "highest_lpa": 800, "companies_count": 180,
+    "top_recruiters": ["TCS", "Infosys", "Amazon", "L&T", "Cognizant", "Wells Fargo"],
+    "ppo_percentage": 20, "core_percentage": 30, "international_percentage": 3,
+    "notable": "Best NIT for placements, strong alumni network"
+  },
+  "NIT Warangal": {
+    "median_lpa": 11, "highest_lpa": 700, "companies_count": 150,
+    "top_recruiters": ["Amazon", "Microsoft", "TCS", "Wipro", "BHEL"],
+    "ppo_percentage": 18, "core_percentage": 28, "international_percentage": 2,
+    "notable": "Strong coding culture, Hyderabad proximity advantage"
+  },
+  "IIIT Hyderabad": {
+    "median_lpa": 20, "highest_lpa": 1200, "companies_count": 200,
+    "top_recruiters": ["Google", "Microsoft", "Amazon", "Qualcomm", "Adobe"],
+    "ppo_percentage": 45, "core_percentage": 5, "international_percentage": 20,
+    "notable": "Best placements-to-brand ratio in India for CS"
+  }
+}

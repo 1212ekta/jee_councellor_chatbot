@@ -1,0 +1,278 @@
+{
+  "Computer Science and Engineering": {
+    "short": "CSE",
+    "domain": "CS",
+    "interest_vector": {
+      "coding": 1.0,
+      "ai_ml": 0.8,
+      "research": 0.5,
+      "core_engineering": 0.2,
+      "electronics": 0.3,
+      "mechanical": 0.0,
+      "civil": 0.0,
+      "chemical": 0.0
+    },
+    "career_paths": [
+      "Software Engineer at top tech firms",
+      "AI/ML Engineer",
+      "Startup Founder",
+      "Quantitative Analyst",
+      "Product Manager",
+      "Research Scientist"
+    ],
+    "suits_goals": ["startup", "higher_studies_abroad", "salary_priority"],
+    "coding_intensity": 5,
+    "research_scope": 4,
+    "median_lpa": 28,
+    "avg_salary_lpa": 35,
+    "top_recruiters": ["Google", "Microsoft", "Amazon", "Flipkart", "Goldman Sachs"],
+    "roadmap": [
+      "Year 1: Core CS fundamentals — DSA, OS, DBMS, discrete math",
+      "Year 2: Systems + web dev + first internship",
+      "Year 3: Specialisation (AI/ML or systems), summer internship at top firm",
+      "Year 4: Placements, research thesis or startup",
+      "Post-grad: SWE L4+ at FAANG or MS/PhD abroad"
+    ]
+  },
+  "Electrical Engineering": {
+    "short": "EE",
+    "domain": "EE",
+    "interest_vector": {
+      "coding": 0.5,
+      "ai_ml": 0.5,
+      "research": 0.7,
+      "core_engineering": 0.8,
+      "electronics": 1.0,
+      "mechanical": 0.2,
+      "civil": 0.0,
+      "chemical": 0.1
+    },
+    "career_paths": [
+      "VLSI/Chip Design Engineer",
+      "Embedded Systems Engineer",
+      "Power Systems Engineer",
+      "R&D at ISRO/DRDO",
+      "Telecom Engineer",
+      "Graduate studies (MS/PhD)"
+    ],
+    "suits_goals": ["research", "core_engineering", "govt_job"],
+    "coding_intensity": 3,
+    "research_scope": 5,
+    "median_lpa": 14,
+    "avg_salary_lpa": 18,
+    "top_recruiters": ["Texas Instruments", "Qualcomm", "Intel", "ISRO", "Samsung"],
+    "roadmap": [
+      "Year 1: Circuit theory, EM fields, mathematics",
+      "Year 2: Electronics, signals & systems, microprocessors",
+      "Year 3: VLSI design, communication systems, internship",
+      "Year 4: Specialisation or research thesis",
+      "Post-grad: MS in EE abroad or core R&D role"
+    ]
+  },
+  "Electronics and Communication Engineering": {
+    "short": "ECE",
+    "domain": "ECE",
+    "interest_vector": {
+      "coding": 0.6,
+      "ai_ml": 0.5,
+      "research": 0.6,
+      "core_engineering": 0.7,
+      "electronics": 0.9,
+      "mechanical": 0.1,
+      "civil": 0.0,
+      "chemical": 0.0
+    },
+    "career_paths": [
+      "VLSI Design Engineer",
+      "Embedded Software Engineer",
+      "Network Engineer",
+      "Signal Processing Engineer",
+      "IoT Developer",
+      "Semiconductor R&D"
+    ],
+    "suits_goals": ["research", "core_engineering", "higher_studies_abroad"],
+    "coding_intensity": 4,
+    "research_scope": 4,
+    "median_lpa": 16,
+    "avg_salary_lpa": 20,
+    "top_recruiters": ["Qualcomm", "Texas Instruments", "Samsung", "MediaTek", "Cisco"],
+    "roadmap": [
+      "Year 1: Electronics basics, programming, math",
+      "Year 2: Digital circuits, microcontrollers, signals",
+      "Year 3: VLSI, communication systems, DSP internship",
+      "Year 4: Thesis or placement",
+      "Post-grad: MS in ECE/EE or chip design role"
+    ]
+  },
+  "Mechanical Engineering": {
+    "short": "ME",
+    "domain": "MECH",
+    "interest_vector": {
+      "coding": 0.2,
+      "ai_ml": 0.2,
+      "research": 0.5,
+      "core_engineering": 1.0,
+      "electronics": 0.3,
+      "mechanical": 1.0,
+      "civil": 0.2,
+      "chemical": 0.3
+    },
+    "career_paths": [
+      "Design Engineer",
+      "Manufacturing Engineer",
+      "R&D at automobile firms",
+      "UPSC/Government services",
+      "MBA then management",
+      "Aerospace/Defence"
+    ],
+    "suits_goals": ["core_engineering", "govt_job", "wants_mba"],
+    "coding_intensity": 2,
+    "research_scope": 3,
+    "median_lpa": 10,
+    "avg_salary_lpa": 13,
+    "top_recruiters": ["Tata Motors", "L&T", "DRDO", "ISRO", "Maruti", "Bosch"],
+    "roadmap": [
+      "Year 1: Engineering drawing, thermodynamics, math",
+      "Year 2: Fluid mechanics, manufacturing processes",
+      "Year 3: CAD/CAM, heat transfer, internship",
+      "Year 4: Placements or GATE/MBA prep",
+      "Post-grad: MBA IIM or MS in Mechanical/Robotics"
+    ]
+  },
+  "Civil Engineering": {
+    "short": "CE",
+    "domain": "CIVIL",
+    "interest_vector": {
+      "coding": 0.1,
+      "ai_ml": 0.1,
+      "research": 0.4,
+      "core_engineering": 0.9,
+      "electronics": 0.1,
+      "mechanical": 0.4,
+      "civil": 1.0,
+      "chemical": 0.2
+    },
+    "career_paths": [
+      "Structural Engineer",
+      "Government infrastructure (PWD, NHAI)",
+      "Real estate & construction",
+      "Urban planner",
+      "UPSC Civil Services",
+      "MS in Civil/Structural Engineering"
+    ],
+    "suits_goals": ["core_engineering", "govt_job"],
+    "coding_intensity": 1,
+    "research_scope": 3,
+    "median_lpa": 8,
+    "avg_salary_lpa": 10,
+    "top_recruiters": ["L&T Construction", "DLF", "NHAI", "State PWDs", "Shapoorji"],
+    "roadmap": [
+      "Year 1: Surveying, mechanics, structural basics",
+      "Year 2: Structural analysis, soil mechanics",
+      "Year 3: Design of structures, hydraulics, internship",
+      "Year 4: Placements or GATE for M.Tech/PSU",
+      "Post-grad: GATE → PSU or M.Tech IIT"
+    ]
+  },
+  "Chemical Engineering": {
+    "short": "ChE",
+    "domain": "CHEM",
+    "interest_vector": {
+      "coding": 0.3,
+      "ai_ml": 0.3,
+      "research": 0.7,
+      "core_engineering": 0.7,
+      "electronics": 0.2,
+      "mechanical": 0.4,
+      "civil": 0.1,
+      "chemical": 1.0
+    },
+    "career_paths": [
+      "Process Engineer in oil & gas",
+      "R&D in pharma/chemicals",
+      "Petroleum Engineer",
+      "Consultant (McKinsey, BCG recruit here)",
+      "MS/PhD in Chemical Engineering or Materials"
+    ],
+    "suits_goals": ["research", "core_engineering", "higher_studies_abroad"],
+    "coding_intensity": 2,
+    "research_scope": 5,
+    "median_lpa": 11,
+    "avg_salary_lpa": 15,
+    "top_recruiters": ["Reliance", "ONGC", "BASF", "Dr Reddy's", "McKinsey"],
+    "roadmap": [
+      "Year 1: Chemistry, thermodynamics, mass transfer basics",
+      "Year 2: Transport phenomena, reaction engineering",
+      "Year 3: Process design, simulation, internship",
+      "Year 4: Thesis or placement",
+      "Post-grad: MS in ChE abroad or PhD"
+    ]
+  },
+  "Engineering Physics": {
+    "short": "EP",
+    "domain": "EP",
+    "interest_vector": {
+      "coding": 0.5,
+      "ai_ml": 0.4,
+      "research": 1.0,
+      "core_engineering": 0.4,
+      "electronics": 0.6,
+      "mechanical": 0.2,
+      "civil": 0.0,
+      "chemical": 0.2
+    },
+    "career_paths": [
+      "Research Scientist",
+      "Quantum computing",
+      "Photonics engineer",
+      "PhD at top global universities",
+      "Finance quant"
+    ],
+    "suits_goals": ["research", "higher_studies_abroad"],
+    "coding_intensity": 3,
+    "research_scope": 5,
+    "median_lpa": 10,
+    "avg_salary_lpa": 14,
+    "top_recruiters": ["CERN", "IISc", "Top US/EU PhD programs", "Goldman Sachs"],
+    "roadmap": [
+      "Year 1-2: Pure physics + math + experimental labs",
+      "Year 3: Specialise — quantum, photonics, or computational",
+      "Year 4: Research thesis (strong PhD application material)",
+      "Post-grad: PhD at MIT/Stanford/ETH"
+    ]
+  },
+  "Mathematics and Computing": {
+    "short": "MnC",
+    "domain": "CS",
+    "interest_vector": {
+      "coding": 0.9,
+      "ai_ml": 0.8,
+      "research": 0.8,
+      "core_engineering": 0.1,
+      "electronics": 0.2,
+      "mechanical": 0.0,
+      "civil": 0.0,
+      "chemical": 0.0
+    },
+    "career_paths": [
+      "Quantitative Analyst",
+      "Data Scientist",
+      "ML Research Engineer",
+      "Software Engineer",
+      "PhD in CS/Math/Statistics"
+    ],
+    "suits_goals": ["startup", "higher_studies_abroad", "salary_priority", "research"],
+    "coding_intensity": 5,
+    "research_scope": 5,
+    "median_lpa": 30,
+    "avg_salary_lpa": 38,
+    "top_recruiters": ["Google DeepMind", "Jane Street", "D.E. Shaw", "Two Sigma", "OpenAI"],
+    "roadmap": [
+      "Year 1: Real analysis, linear algebra, discrete math, programming",
+      "Year 2: Algorithms, probability, numerical methods",
+      "Year 3: ML theory, optimization, competitive internships",
+      "Year 4: Research or quant/FAANG placement",
+      "Post-grad: PhD at top-5 CS/Stats program"
+    ]
+  }
+}

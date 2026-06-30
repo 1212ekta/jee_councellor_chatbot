@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: jee-counselor
+    env: python
+    buildCommand: pip install fastapi uvicorn[standard] pydantic pydantic-settings pandas openpyxl numpy duckdb anthropic reportlab diskcache httpx
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ENABLE_LLM_EXPLANATIONS
+        value: "true"
+      - key: LOG_LEVEL
+        value: "INFO"
+      - key: APP_ENV
+        value: "production"
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1

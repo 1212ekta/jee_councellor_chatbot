@@ -1,0 +1,147 @@
+{
+  "by_branch": {
+    "Computer Science and Engineering": {
+      "top_ms_programs": [
+        "MS CS at Stanford, MIT, CMU, Berkeley, UIUC",
+        "MS in AI/ML at Carnegie Mellon MCDS, Stanford AI Lab",
+        "MEng at Cornell Tech or MIT"
+      ],
+      "top_phd_programs": [
+        "PhD CS at MIT, Stanford, CMU, Berkeley",
+        "PhD AI at Oxford, ETH Zurich, Cambridge",
+        "PhD at IISc Bangalore (India)"
+      ],
+      "indian_options": [
+        "M.Tech CS at IIT Bombay/Delhi/Madras via GATE",
+        "MS by Research at IIT/IISC",
+        "PhD at IISc/IIT (funded)"
+      ],
+      "avg_ms_stipend_usd": "20000-35000/year",
+      "gre_importance": "medium (many programs now optional)",
+      "typical_admit_cgpa": "8.5+ from IIT, 9.0+ from NIT",
+      "strong_profile_boosters": ["Research publications", "Open source contributions", "Strong internships at top firms"]
+    },
+    "Electrical Engineering": {
+      "top_ms_programs": [
+        "MS EE at MIT, Stanford, Caltech, UIUC, Georgia Tech",
+        "MS in VLSI at UIUC, Purdue, UMich",
+        "MS in Power Systems at ETH Zurich, TU Delft"
+      ],
+      "top_phd_programs": [
+        "PhD EE at MIT, Stanford, Caltech",
+        "PhD in Signal Processing at EPFL, ETH"
+      ],
+      "indian_options": [
+        "M.Tech EE/ECE at IITs via GATE",
+        "PhD at IISc (funded fellowship)"
+      ],
+      "avg_ms_stipend_usd": "20000-30000/year",
+      "gre_importance": "high for VLSI programs",
+      "typical_admit_cgpa": "8.5+ from IIT",
+      "strong_profile_boosters": ["VLSI design projects", "Publications", "Hardware internships"]
+    },
+    "Mechanical Engineering": {
+      "top_ms_programs": [
+        "MS ME at MIT, Stanford, Michigan, Georgia Tech",
+        "MS Aerospace at Caltech, MIT, Michigan",
+        "MS Robotics at CMU, MIT"
+      ],
+      "top_phd_programs": [
+        "PhD ME at MIT, Stanford, CalTech",
+        "PhD in Robotics at CMU, ETH Zurich"
+      ],
+      "indian_options": [
+        "M.Tech Mechanical/Aerospace at IITs via GATE",
+        "MBA at IIM (very common path for Mech IIT grads)"
+      ],
+      "avg_ms_stipend_usd": "18000-28000/year",
+      "gre_importance": "high",
+      "typical_admit_cgpa": "8.0+ from IIT",
+      "strong_profile_boosters": ["CAD/CAM projects", "FSAE team experience", "Research in robotics"]
+    },
+    "Civil Engineering": {
+      "top_ms_programs": [
+        "MS Civil/Structural at MIT, Stanford, UC Berkeley",
+        "MS Urban Planning at MIT, Columbia",
+        "MS Environmental Engineering at ETH Zurich"
+      ],
+      "top_phd_programs": [
+        "PhD Structural at MIT, Stanford",
+        "PhD Environmental at Berkeley, ETH"
+      ],
+      "indian_options": [
+        "M.Tech Civil/Structural at IITs via GATE",
+        "IES (Indian Engineering Services) — premier government path"
+      ],
+      "avg_ms_stipend_usd": "18000-26000/year",
+      "gre_importance": "high",
+      "typical_admit_cgpa": "8.0+",
+      "strong_profile_boosters": ["Research in structural analysis", "Internship at consulting firms"]
+    },
+    "Chemical Engineering": {
+      "top_ms_programs": [
+        "MS ChE at MIT, Stanford, Caltech, UT Austin",
+        "MS Process Engineering at ETH Zurich, TU Delft",
+        "MS Materials Science at MIT, Stanford"
+      ],
+      "top_phd_programs": [
+        "PhD ChE at MIT, Caltech, Stanford",
+        "PhD in Bioengineering at ETH, Imperial College"
+      ],
+      "indian_options": [
+        "M.Tech ChE at IIT Bombay/Madras via GATE",
+        "MBA (McKinsey/BCG hire IIT ChemE grads directly)"
+      ],
+      "avg_ms_stipend_usd": "20000-32000/year",
+      "gre_importance": "high",
+      "typical_admit_cgpa": "8.5+",
+      "strong_profile_boosters": ["Process simulation projects", "Research publications", "Pharma internships"]
+    },
+    "Mathematics and Computing": {
+      "top_ms_programs": [
+        "MS Statistics at Stanford, MIT, Berkeley",
+        "MS CS at CMU, MIT (strong math background advantage)",
+        "MS Financial Engineering at Columbia, Berkeley"
+      ],
+      "top_phd_programs": [
+        "PhD CS/Stats at MIT, Stanford, Berkeley",
+        "PhD Applied Math at Caltech, NYU Courant"
+      ],
+      "indian_options": [
+        "M.Tech CS at IITs via GATE (excellent conversion)",
+        "PhD at IISc/ISI Kolkata"
+      ],
+      "avg_ms_stipend_usd": "22000-38000/year",
+      "gre_importance": "low (strong profile speaks for itself)",
+      "typical_admit_cgpa": "9.0+ from IIT (very competitive)",
+      "strong_profile_boosters": ["Competitive programming", "Math olympiad background", "Quant research papers"]
+    },
+    "Engineering Physics": {
+      "top_ms_programs": [
+        "MS Physics/Applied Physics at Caltech, MIT, Stanford",
+        "MS Photonics at KTH, Chalmers, EPFL",
+        "MS Quantum Computing at MIT, Waterloo"
+      ],
+      "top_phd_programs": [
+        "PhD Physics at MIT, Caltech, ETH Zurich, CERN",
+        "PhD Quantum at Oxford, Cambridge, Waterloo"
+      ],
+      "indian_options": [
+        "PhD at IISc, TIFR, IUCAA (all funded)",
+        "Integrated PhD at IISc"
+      ],
+      "avg_ms_stipend_usd": "20000-30000/year",
+      "gre_importance": "high (GRE Physics subject test for top programs)",
+      "typical_admit_cgpa": "9.0+ — very competitive",
+      "strong_profile_boosters": ["Physics olympiad medals", "Publications", "Lab research"]
+    }
+  },
+  "general_advice": {
+    "when_to_consider_ms": "If you want deep specialisation, career switch, or higher salary ceiling",
+    "when_to_consider_phd": "Only if you genuinely love research and are okay with 4-6 year timeline",
+    "gre_cutoff_general": "320+ for competitive programs, 330+ for MIT/Stanford/CMU",
+    "cgpa_importance": "Very high — below 8.0 from IIT significantly limits options",
+    "research_papers": "Even one conference paper dramatically improves PhD admit chances",
+    "timeline": "Apply in September-December of final year for next-year enrollment"
+  }
+}

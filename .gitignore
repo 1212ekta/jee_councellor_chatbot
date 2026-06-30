@@ -1,0 +1,35 @@
+# Environment
+.env
+*.env
+
+# Data (mount via Docker volume, never commit)
+data/cutoffs/*.xlsx
+data/*.duckdb*
+data/*.db*
+data/cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Ruff / Black
+.ruff_cache/

@@ -1,0 +1,67 @@
+{
+  "_comment": "All scoring weights and thresholds. Edit here to tune recommendations without touching code.",
+
+  "scorer_weights": {
+    "rank_fit":            0.40,
+    "interest_match":      0.25,
+    "institute_strength":  0.15,
+    "career_alignment":    0.12,
+    "home_state_bonus":    0.05,
+    "flexibility":         0.03
+  },
+
+  "persona_weight_overrides": {
+    "software_engineer":     { "interest_match": 0.30, "institute_strength": 0.20 },
+    "ai_researcher":         { "interest_match": 0.30, "career_alignment": 0.18, "institute_strength": 0.17 },
+    "entrepreneur":          { "interest_match": 0.28, "institute_strength": 0.20, "flexibility": 0.08 },
+    "mba_aspirant":          { "institute_strength": 0.25, "career_alignment": 0.18, "flexibility": 0.07 },
+    "core_engineer":         { "interest_match": 0.30, "career_alignment": 0.18, "institute_strength": 0.12 },
+    "govt_psu_aspirant":     { "career_alignment": 0.20, "institute_strength": 0.12, "flexibility": 0.03 },
+    "higher_studies_abroad": { "institute_strength": 0.22, "career_alignment": 0.17, "interest_match": 0.27 },
+    "electronics_vlsi":      { "interest_match": 0.32, "career_alignment": 0.18 },
+    "undecided_explorer":    { "institute_strength": 0.25, "flexibility": 0.10, "interest_match": 0.15 }
+  },
+
+  "risk_thresholds": {
+    "dream_min":      0.15,
+    "dream_max":      0.45,
+    "target_min":     0.45,
+    "target_max":     0.75,
+    "safe_min":       0.75,
+    "safe_max":       0.90,
+    "very_safe_min":  0.90
+  },
+
+  "sigmoid": {
+    "steepness":              8.0,
+    "cutoff_variance_factor": 0.10
+  },
+
+  "institute_type_base_scores": {
+    "IIT":   1.00,
+    "IIIT":  0.75,
+    "NIT":   0.65,
+    "GFTI":  0.45,
+    "State": 0.40
+  },
+
+  "compatibility_badge_thresholds": {
+    "admission_probability": { "high": 0.80, "low": 0.40 },
+    "career_match":          { "high": 0.75, "low": 0.45 },
+    "research_match":        { "high": 0.75, "low": 0.40 },
+    "coding_match":          { "high": 0.78, "low": 0.40 },
+    "lifestyle_match":       { "high": 0.70, "low": 0.40 },
+    "future_growth":         { "high": 0.72, "low": 0.45 },
+    "placement_strength":    { "high": 0.75, "low": 0.40 },
+    "institute_reputation":  { "high": 0.80, "low": 0.50 }
+  },
+
+  "max_results_per_bucket": {
+    "dream":     5,
+    "target":    8,
+    "safe":      8,
+    "very_safe": 5
+  },
+
+  "min_closing_rank_filter": 500000
+}

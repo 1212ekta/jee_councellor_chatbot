@@ -1,0 +1,74 @@
+{
+  "by_branch": {
+    "Computer Science and Engineering": {
+      "tier_1": ["Google", "Microsoft", "Amazon", "Meta", "Apple", "Stripe", "Jane Street", "D.E. Shaw"],
+      "tier_2": ["Uber", "Flipkart", "Razorpay", "Zepto", "Meesho", "PhonePe", "CRED"],
+      "tier_3": ["TCS", "Infosys", "Wipro", "Cognizant", "HCL"],
+      "finance": ["Goldman Sachs", "JP Morgan", "Morgan Stanley", "Two Sigma", "Citadel"],
+      "consulting": ["McKinsey", "BCG", "Bain"],
+      "core_tech": ["Qualcomm", "Intel", "Texas Instruments", "Samsung R&D", "Adobe"],
+      "startups": ["Y-Combinator backed companies", "Own startup", "Series A/B tech startups"]
+    },
+    "Electrical Engineering": {
+      "tier_1": ["Texas Instruments", "Qualcomm", "Intel", "Nvidia", "ARM"],
+      "tier_2": ["Samsung", "MediaTek", "STMicroelectronics", "NXP", "Renesas"],
+      "core_industry": ["ISRO", "DRDO", "BHEL", "NTPC", "ABB", "Siemens", "Schneider Electric"],
+      "software_track": ["Google", "Microsoft", "Amazon", "Flipkart"],
+      "finance": ["Goldman Sachs", "JP Morgan"],
+      "psu": ["NTPC", "PGCIL", "BHEL", "IOCL", "ONGC"]
+    },
+    "Mechanical Engineering": {
+      "tier_1": ["Tata Motors", "L&T", "Mahindra", "ITC", "Schlumberger"],
+      "finance": ["Rare — typically requires coding/quant upskilling"],
+      "core_industry": ["Tata Motors", "L&T", "Mahindra", "Bosch", "Maruti Suzuki", "Honda"],
+      "aerospace": ["ISRO", "HAL", "Boeing", "Airbus", "DRDO"],
+      "consulting": ["McKinsey", "BCG", "Bain", "Deloitte"],
+      "psu": ["BHEL", "GAIL", "ONGC", "IOCL", "SAIL", "Coal India"],
+      "software_switch": ["TCS", "Infosys", "Wipro", "Accenture"]
+    },
+    "Civil Engineering": {
+      "tier_1": ["L&T Construction", "Shapoorji Pallonji", "Tata Projects"],
+      "finance": ["Rare"],
+      "construction": ["L&T Construction", "Shapoorji Pallonji", "DLF", "Oberoi Realty"],
+      "infrastructure": ["NHAI", "RITES", "IRCON", "NBCC"],
+      "consulting": ["AECOM", "Arup", "Jacobs", "WSP"],
+      "psu": ["NHAI", "RITES", "IRCON", "NBCC", "NTPC Civil"],
+      "govt": ["State PWDs", "CPWD", "Municipal Corporations"],
+      "software_switch": ["Rare — requires upskilling"]
+    },
+    "Chemical Engineering": {
+      "tier_1": ["Reliance Industries", "Hindustan Unilever", "P&G", "ITC", "Schlumberger"],
+      "finance": ["Rare"],
+      "oil_gas": ["Reliance Industries", "ONGC", "BPCL", "HPCL", "Shell", "ExxonMobil"],
+      "pharma": ["Dr Reddy's", "Sun Pharma", "Cipla", "Lupin", "Novartis"],
+      "chemicals": ["BASF", "Dow Chemical", "Tata Chemicals", "UPL"],
+      "consulting": ["McKinsey", "BCG", "Bain (direct IIT ChemE hiring)"],
+      "psu": ["ONGC", "GAIL", "IOCL", "BPCL"]
+    },
+    "Electronics and Communication Engineering": {
+      "vlsi_chip": ["Qualcomm", "Intel", "Texas Instruments", "Nvidia", "Samsung LSI"],
+      "embedded": ["Robert Bosch", "Continental", "Marvell", "Broadcom", "Synopsys"],
+      "telecom": ["Nokia", "Ericsson", "Jio Platforms", "Airtel"],
+      "software_track": ["Google", "Microsoft", "Amazon", "Adobe"],
+      "defense": ["DRDO", "BEL", "HAL", "L&T Defence"],
+      "psu": ["BSNL", "BEL", "DRDO", "ISRO"]
+    },
+    "Mathematics and Computing": {
+      "quant_finance": ["Jane Street", "D.E. Shaw", "Two Sigma", "Citadel", "Tower Research"],
+      "top_tech": ["Google", "Microsoft", "Amazon", "DeepMind", "OpenAI"],
+      "consulting": ["McKinsey", "BCG", "Bain"],
+      "research": ["Microsoft Research", "Google Brain", "Meta AI", "IBM Research"],
+      "startups": ["AI/ML startups", "Fintech companies", "Own venture"]
+    }
+  },
+  "by_institute": {
+    "IIT Bombay":  ["Google", "Microsoft", "Goldman Sachs", "McKinsey", "Uber", "Stripe", "Zepto"],
+    "IIT Delhi":   ["Google", "Microsoft", "BCG", "D.E. Shaw", "Amazon", "JP Morgan"],
+    "IIT Madras":  ["Texas Instruments", "Qualcomm", "Google", "McKinsey", "Samsung"],
+    "IIT Kanpur":  ["Google", "Jane Street", "Two Sigma", "D.E. Shaw", "Microsoft"],
+    "IIT Kharagpur":["Tata Steel", "L&T", "Schlumberger", "Google", "Microsoft"],
+    "NIT Trichy":  ["TCS", "Infosys", "Amazon", "L&T", "Wells Fargo", "Cognizant"],
+    "NIT Warangal":["Amazon", "Microsoft", "TCS", "Wipro", "BHEL"],
+    "IIIT Hyderabad":["Google", "Microsoft", "Amazon", "Qualcomm", "Adobe"]
+  }
+}

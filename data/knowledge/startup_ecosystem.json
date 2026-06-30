@@ -1,0 +1,104 @@
+{
+  "by_institute": {
+    "IIT Bombay": {
+      "ecell_name": "E-Cell IIT Bombay",
+      "ecell_rating": 5,
+      "notable_startups": ["Zepto", "Razorpay", "Meesho", "Ola", "InMobi", "Pepperfry"],
+      "incubator": "SINE (Society for Innovation and Entrepreneurship)",
+      "avg_startups_per_year": 30,
+      "funding_access": "Excellent — Mumbai VC ecosystem proximity",
+      "alumni_angels": ["Bhavish Aggarwal (Ola)", "Sanjay Nayak (Tejas Networks)"],
+      "startup_culture_score": 5,
+      "notes": "Best startup ecosystem among all IITs. Mumbai location gives VC access."
+    },
+    "IIT Delhi": {
+      "ecell_name": "Entrepreneurship Cell IIT Delhi",
+      "ecell_rating": 5,
+      "notable_startups": ["Paytm (partial)", "Housing.com", "BrowserStack", "Unacademy"],
+      "incubator": "FITT (Foundation for Innovation and Technology Transfer)",
+      "avg_startups_per_year": 25,
+      "funding_access": "Excellent — Delhi NCR startup hub",
+      "alumni_angels": ["Multiple unicorn founders"],
+      "startup_culture_score": 5,
+      "notes": "Strong for fintech and B2B SaaS startups. Good government policy access."
+    },
+    "IIT Madras": {
+      "ecell_name": "E-Cell IIT Madras",
+      "ecell_rating": 4,
+      "notable_startups": ["Axilor Ventures portfolio companies", "Multiple deeptech startups"],
+      "incubator": "IITM Research Park + IITM Incubation Cell",
+      "avg_startups_per_year": 20,
+      "funding_access": "Good — Chennai ecosystem growing",
+      "startup_culture_score": 4,
+      "notes": "Strongest for deep tech and hardware startups. Research park is India's largest."
+    },
+    "IIT Kharagpur": {
+      "ecell_name": "Entrepreneurship Cell IIT KGP",
+      "ecell_rating": 4,
+      "notable_startups": ["Multiple manufacturing and core tech startups"],
+      "incubator": "Rajendra Mishra School of Engineering Entrepreneurship",
+      "avg_startups_per_year": 15,
+      "funding_access": "Moderate — far from major VC hubs",
+      "startup_culture_score": 3,
+      "notes": "Good for core engineering startups. Location is a disadvantage for consumer tech."
+    },
+    "IIT Kanpur": {
+      "ecell_name": "E-Cell IIT Kanpur",
+      "ecell_rating": 4,
+      "notable_startups": ["Praxis Business School founders", "Multiple AI startups"],
+      "incubator": "SIIC (Startup Incubation and Innovation Centre)",
+      "avg_startups_per_year": 12,
+      "funding_access": "Moderate",
+      "startup_culture_score": 4,
+      "notes": "Strong for quant and AI startups. Excellent CS + math foundation."
+    },
+    "IIIT Hyderabad": {
+      "ecell_name": "Center for Innovation & Entrepreneurship",
+      "ecell_rating": 4,
+      "notable_startups": ["Multiple AI/ML product companies"],
+      "incubator": "IIIT-H Incubation Cell",
+      "avg_startups_per_year": 10,
+      "funding_access": "Good — Hyderabad tech ecosystem",
+      "startup_culture_score": 4,
+      "notes": "Best for AI/ML product startups. Strong research-to-product pipeline."
+    }
+  },
+  "branch_startup_fit": {
+    "Computer Science and Engineering": {
+      "score": 5,
+      "typical_startups": "SaaS, AI products, fintech, consumer apps",
+      "time_to_first_startup": "Often during college or within 2 years of graduation"
+    },
+    "Mathematics and Computing": {
+      "score": 5,
+      "typical_startups": "Quantitative trading, AI/ML, fintech algorithms",
+      "time_to_first_startup": "Usually post 2-3 years for financial runway"
+    },
+    "Electrical Engineering": {
+      "score": 3,
+      "typical_startups": "Hardware, IoT, semiconductor IP, EV tech",
+      "time_to_first_startup": "Usually post 3-5 years due to capital requirements"
+    },
+    "Mechanical Engineering": {
+      "score": 2,
+      "typical_startups": "Manufacturing, robotics, EV, climate tech",
+      "time_to_first_startup": "Post 5+ years — capital intensive"
+    },
+    "Civil Engineering": {
+      "score": 2,
+      "typical_startups": "Proptech, infrastructure tech, construction management",
+      "time_to_first_startup": "Post 5+ years"
+    },
+    "Chemical Engineering": {
+      "score": 2,
+      "typical_startups": "Climate tech, biotech, agritech, materials",
+      "time_to_first_startup": "Post 5+ years — high capital barrier"
+    }
+  },
+  "general_advice": {
+    "best_institutes_for_startups": ["IIT Bombay", "IIT Delhi", "IIT Madras", "IIIT Hyderabad"],
+    "best_branches_for_startups": ["CSE", "MnC", "EE (hardware)", "ECE (hardware)"],
+    "startup_resources": ["YC Application (free)", "Antler India", "Sequoia Surge"],
+    "key_success_factor": "Network and peer group matters more than branch for startups"
+  }
+}

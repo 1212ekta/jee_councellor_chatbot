@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ hashFiles('pyproject.toml') }}
+
+      - name: Install dependencies
+        run: |
+          pip install fastapi uvicorn[standard] pydantic pydantic-settings \
+            pandas openpyxl numpy duckdb anthropic reportlab diskcache httpx \
+            pytest pytest-asyncio aiofiles
+
+      - name: Download test dataset
+        run: |
+          mkdir -p data/cutoffs
+          curl -L -o data/cutoffs/JEE_2025_Cutoffs.xlsx \
+            "https://raw.githubusercontent.com/atmabodha/OpenNLP/main/IIT-JEE/JEE_2025_Cutoffs.xlsx"
+
+      - name: Run tests
+        env:
+          ANTHROPIC_API_KEY: ""
+          ENABLE_LLM_EXPLANATIONS: "false"
+          DATA_DIR: ./data
+        run: pytest tests/ -v --tb=short
+
+      - name: Check import health
+        run: python -c "from app.main import app; print('App imports OK')"

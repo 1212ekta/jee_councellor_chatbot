@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "jee-counselor"
+version = "1.0.0"
+description = "AI-powered JEE institute & branch recommendation system"
+requires-python = ">=3.11"
+dependencies = [
+    # Web framework
+    "fastapi>=0.111.0",
+    "uvicorn[standard]>=0.29.0",
+
+    # Data validation
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.3.0",
+
+    # Data processing
+    "pandas>=2.2.0",
+    "openpyxl>=3.1.0",
+    "numpy>=1.26.0",
+
+    # Database
+    "duckdb>=0.10.0",
+
+    # AI
+    "anthropic>=0.28.0",
+
+    # PDF generation
+    "reportlab>=4.2.0",
+
+    # Caching
+    "diskcache>=5.6.0",
+
+    # HTTP client (for health checks)
+    "httpx>=0.27.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2.0",
+    "pytest-asyncio>=0.23.0",
+    "httpx>=0.27.0",
+    "black>=24.4.0",
+    "ruff>=0.4.0",
+    "pre-commit>=3.7.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
